@@ -10,7 +10,7 @@ namespace Backend.TableDataGateways
         bool Insert(Model obj);
         bool Update(Model obj);
         bool Delete(Model obj);
-        bool SelectAll();
-        bool SelectOne(string id);
+        List<Model> SelectAll();
+        Model SelectOne(string id);
     }
 }

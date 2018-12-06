@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Backend.Models
+{
+    public class Vykon : Model
+    {
+        public string Popis { get; set; }
+        public string Kod { get; set; }
+        public string Poznamka { get; set; }
+
+        public override string ToString()
+        {
+            return Kod + " - " + Popis; 
+        }
+    }
+}

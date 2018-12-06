@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Backend.Models
 {
-    public class Model
+    public class LesniHospodarskyCelek : Model
     {
-        public string Id { get; set; }
+        public string Kod { get; set; }
     }
 }
