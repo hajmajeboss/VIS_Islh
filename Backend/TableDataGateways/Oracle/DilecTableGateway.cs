@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using Backend.Models;
+using Backend.TableDataGateways.Interfaces;
 using Oracle.ManagedDataAccess.Client;
 
 namespace Backend.TableDataGateways.Oracle
 {
-    public class DilecTableGateway : OracleTableDataGateway
+    public class DilecTableGateway : OracleTableDataGateway, IDilecTableGateway
     {
         private const string SELECT_ALL = "select id, id_odd, kod from Dilec";
         private const string SELECT_ONE = "select id, id_odd, kod from Dilec where id = :id";

@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using Backend.Models;
+using Backend.TableDataGateways.Interfaces;
 using Oracle.ManagedDataAccess.Client;
 
 namespace Backend.TableDataGateways.Oracle
 {
-    public class PodvykonTableGateway : OracleTableDataGateway
+    public class PodvykonTableGateway : OracleTableDataGateway, IPodvykonTableGateway
     {
         private const string SELECT_ALL = "select id, id_vykon, kod, popis, poznamka from Podvykon";
         private const string SELECT_ONE = "select id, id_vykon, kod, popis, poznamka from Podvykon where id = :id";

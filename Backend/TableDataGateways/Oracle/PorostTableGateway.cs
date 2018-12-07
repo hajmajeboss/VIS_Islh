@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using Backend.Models;
+using Backend.TableDataGateways.Interfaces;
 using Oracle.ManagedDataAccess.Client;
 
 namespace Backend.TableDataGateways.Oracle
 {
-    public class PorostTableGateway : OracleTableDataGateway
+    public class PorostTableGateway : OracleTableDataGateway, IPorostTableGateway
     {
         private const string SELECT_ALL = "select id, id_dil, kod from Porost";
         private const string SELECT_ONE = "select id, id_dil, kod from Porost where id = :id";
