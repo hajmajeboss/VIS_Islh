@@ -14,7 +14,7 @@ namespace Backend.Models
         public string Poznamka { get; set; }
 
         private PorostniSkupina _psk;
-        public PorostniSkupina PorostniSkupina { set { _psk = value; IdPorostniSkupina = value.Id } }
+        public PorostniSkupina PorostniSkupina { set { _psk = value; IdPorostniSkupina = value.Id; } }
         public PorostniSkupina GetPorostniSkupina(ITableDataGateway gw)
         {
             PorostniSkupina psk = (PorostniSkupina)gw.SelectOne(IdPorostniSkupina);

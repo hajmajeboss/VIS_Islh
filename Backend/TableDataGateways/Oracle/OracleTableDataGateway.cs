@@ -6,7 +6,7 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace Backend.TableDataGateways.Oracle
 {
-    public abstract class OracleTableDataGateway : ITableDataGateway, IDisposable
+    public abstract class OracleTableDataGateway : ITableDataGateway
     {
         protected OracleConnection Connection { get; set; }
 
@@ -18,17 +18,7 @@ namespace Backend.TableDataGateways.Oracle
 
         protected OracleTableDataGateway()
         {
-            Connection = new OracleConnection();
-            Connection.ConnectionString = "";
-            Connection.Open();
         }
 
-        public void Dispose()
-        {
-            if (Connection.State == System.Data.ConnectionState.Open)
-            {
-                Connection.Close();
-            }
-        }
     }
 }

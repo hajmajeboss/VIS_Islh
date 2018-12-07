@@ -15,7 +15,7 @@ namespace Backend.Models
         public double ProcentPudy { get; set; }
 
         private PorostniSkupina _psk;
-        public PorostniSkupina PorostniSkupina { set { _psk = value; IdPorostniSkupina = value.Id } }
+        public PorostniSkupina PorostniSkupina { set { _psk = value; IdPorostniSkupina = value.Id; } }
         public PorostniSkupina GetPorostniSkupina(ITableDataGateway gw)
         {
             PorostniSkupina psk = (PorostniSkupina)gw.SelectOne(IdPorostniSkupina);
@@ -23,7 +23,7 @@ namespace Backend.Models
         }
 
         private Drevina _drevina;
-        public Drevina Drevina { set { _drevina = value; IdDrevina = value.Id } }
+        public Drevina Drevina { set { _drevina = value; IdDrevina = value.Id; } }
         public Drevina GetDrevina(ITableDataGateway gw)
         {
             Drevina drevina = (Drevina)gw.SelectOne(IdDrevina);

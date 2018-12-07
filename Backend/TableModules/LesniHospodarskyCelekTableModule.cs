@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Backend.TableModules
 {
-    class LesniHospodarskyCelek_TableModule
+    class LesniHospodarskyCelekTableModule
     {
     }
 }

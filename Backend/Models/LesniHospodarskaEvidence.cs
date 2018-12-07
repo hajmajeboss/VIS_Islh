@@ -15,7 +15,7 @@ namespace Backend.Models
         public double Mnozstvi { get; set; }
 
         private PorostniSkupina _psk;
-        public PorostniSkupina PorostniSkupina { set { _psk = value; IdPorostniSkupina = value.Id } }
+        public PorostniSkupina PorostniSkupina { set { _psk = value; IdPorostniSkupina = value.Id; } }
         public PorostniSkupina GetPorostniSkupina(ITableDataGateway gw)
         {
             PorostniSkupina psk = (PorostniSkupina)gw.SelectOne(IdPorostniSkupina);
@@ -23,7 +23,7 @@ namespace Backend.Models
         }
 
         private Podvykon _podvykon;
-        public Podvykon Podvykon { set { _podvykon = value; IdPodvykon = value.Id } }
+        public Podvykon Podvykon { set { _podvykon = value; IdPodvykon = value.Id; } }
         public Podvykon GetPodvykon(ITableDataGateway gw)
         {
             Podvykon podvykon = (Podvykon)gw.SelectOne(IdPodvykon);
@@ -31,7 +31,7 @@ namespace Backend.Models
         }
 
         private DruhTezby _druhTezby;
-        public DruhTezby DruhTezby { set { _druhTezby = value; IdDruhTezby = value.Id } }
+        public DruhTezby DruhTezby { set { _druhTezby = value; IdDruhTezby = value.Id; } }
         public DruhTezby GetDruhTezby(ITableDataGateway gw)
         {
             DruhTezby druhTezby = (DruhTezby)gw.SelectOne(IdDruhTezby);
@@ -39,7 +39,7 @@ namespace Backend.Models
         }
 
         private Drevina _drevina;
-        public Drevina Drevina { set { _drevina = value; IdDrevina = value.Id } }
+        public Drevina Drevina { set { _drevina = value; IdDrevina = value.Id; } }
         public Drevina GetDrevina(ITableDataGateway gw)
         {
             Drevina drevina = (Drevina)gw.SelectOne(IdDrevina);
