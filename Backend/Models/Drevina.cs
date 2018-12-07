@@ -8,7 +8,7 @@ namespace Backend.Models
     {
         public string Popis { get; set; }
         public string Kod { get; set; }
-        public double Hustota { get; set; }
+        public double? Hustota { get; set; }
         public string Poznamka { get; set; }
     }
 }

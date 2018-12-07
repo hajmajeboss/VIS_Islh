@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Backend.Models;
@@ -29,7 +29,7 @@ namespace Backend.TableDataGateways.Oracle
                         return true;
                     }
 
-                    catch(OracleException oe)
+                    catch (OracleException oe)
                     {
                         Log(oe.Message);
                         return false;
