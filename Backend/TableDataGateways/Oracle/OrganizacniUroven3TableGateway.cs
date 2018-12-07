@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Backend.Models;
@@ -6,17 +6,17 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace Backend.TableDataGateways.Oracle
 {
-    public class DilecTableGateway : OracleTableDataGateway
+    public class OrganizacniUroven3TableGateway : OracleTableDataGateway
     {
-        private const string SELECT_ALL = "select id, id_odd, kod from Dilec";
-        private const string SELECT_ONE = "select id, id_odd, kod from Dilec where id = :id";
-        private const string INSERT = "insert into Dilec(id, id_odd, kod) values (:id, :id_odd, :kod)";
-        private const string UPDATE = "update Dilec set id_odd = :id_odd, kod = :kod where id = :id";
-        private const string DELETE = "delete from Dilec where id = :id";
+        private const string SELECT_ALL = "select id, id_org2, kod, popis, poznamka from OrganizacniUroven3";
+        private const string SELECT_ONE = "select id, id_org2, kod, popis, poznamka from OrganizacniUroven3 where id = :id";
+        private const string INSERT = "insert into OrganizacniUroven3(id, id_org2, kod, popis, poznamka) values (:id, :kod, :popis, :poznamka)";
+        private const string UPDATE = "update OrganizacniUroven3 set id_org2 = :id_org2, kod = :kod, popis = :popis, poznamka = :poznamka where id = :id";
+        private const string DELETE = "delete from OrganizacniUroven3 where id = :id";
 
         public override bool Delete(Model obj)
         {
-            Dilec del = (Dilec)obj;
+            OrganizacniUroven3 del = (OrganizacniUroven3)obj;
             using (var c = ConnetionFactory.GetOracleConnection())
             {
                 using (var cmd = c.CreateCommand())
@@ -41,7 +41,7 @@ namespace Backend.TableDataGateways.Oracle
 
         public override bool Insert(Model obj)
         {
-            Dilec ins = (Dilec)obj;
+            OrganizacniUroven3 ins = (OrganizacniUroven3)obj;
             using (var c = ConnetionFactory.GetOracleConnection())
             {
                 using (var cmd = c.CreateCommand())
@@ -50,8 +50,10 @@ namespace Backend.TableDataGateways.Oracle
                     {
                         cmd.CommandText = INSERT;
                         cmd.Parameters.Add(":id", ins.Id);
-                        cmd.Parameters.Add(":id_odd", ins.IdLesniHospodarskyCelek);
+                        cmd.Parameters.Add(":id_org2", ins.IdOrganizacniUroven2);
                         cmd.Parameters.Add(":kod", ins.Kod);
+                        cmd.Parameters.Add(":popis", ins.Popis);
+                        cmd.Parameters.Add(":poznamka", ins.Poznamka);
                         cmd.ExecuteNonQuery();
                         return true;
                     }
@@ -67,7 +69,7 @@ namespace Backend.TableDataGateways.Oracle
 
         public override bool Update(Model obj)
         {
-            Dilec ins = (Dilec)obj;
+            OrganizacniUroven3 ins = (OrganizacniUroven3)obj;
             using (var c = ConnetionFactory.GetOracleConnection())
             {
                 using (var cmd = c.CreateCommand())
@@ -75,8 +77,10 @@ namespace Backend.TableDataGateways.Oracle
                     try
                     {
                         cmd.CommandText = UPDATE;
-                        cmd.Parameters.Add(":id_odd", ins.IdLesniHospodarskyCelek);
+                        cmd.Parameters.Add(":id_org2", ins.IdOrganizacniUroven2);
                         cmd.Parameters.Add(":kod", ins.Kod);
+                        cmd.Parameters.Add(":popis", ins.Popis);
+                        cmd.Parameters.Add(":poznamka", ins.Poznamka);
                         cmd.Parameters.Add(":id", ins.Id);
                         cmd.ExecuteNonQuery();
                         return true;
@@ -104,13 +108,15 @@ namespace Backend.TableDataGateways.Oracle
                         while (reader.Read())
                         {
                             int i = -1;
-                            Dilec oddec = new Dilec
+                            OrganizacniUroven3 organizacniUroven3 = new OrganizacniUroven3
                             {
                                 Id = reader.GetString(++i),
-                                IdLesniHospodarskyCelek = reader.GetString(++i),
+                                IdOrganizacniUroven2 = reader.GetString(++i),
                                 Kod = reader.GetString(++i),
+                                Popis = !reader.IsDBNull(++i) ? reader.GetString(i) : null,
+                                Poznamka = !reader.IsDBNull(++i) ? reader.GetString(i) : null
                             };
-                            result.Add(oddec);
+                            result.Add(organizacniUroven3);
                         }
                         return result;
                     }

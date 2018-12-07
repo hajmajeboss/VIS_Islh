@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Backend.Models;
@@ -50,7 +50,7 @@ namespace Backend.TableDataGateways.Oracle
                     {
                         cmd.CommandText = INSERT;
                         cmd.Parameters.Add(":id", ins.Id);
-                        cmd.Parameters.Add(":id_odd", ins.IdLesniHospodarskyCelek);
+                        cmd.Parameters.Add(":id_odd", ins.IdOddeleni);
                         cmd.Parameters.Add(":kod", ins.Kod);
                         cmd.ExecuteNonQuery();
                         return true;
@@ -75,7 +75,7 @@ namespace Backend.TableDataGateways.Oracle
                     try
                     {
                         cmd.CommandText = UPDATE;
-                        cmd.Parameters.Add(":id_odd", ins.IdLesniHospodarskyCelek);
+                        cmd.Parameters.Add(":id_odd", ins.IdOddeleni);
                         cmd.Parameters.Add(":kod", ins.Kod);
                         cmd.Parameters.Add(":id", ins.Id);
                         cmd.ExecuteNonQuery();
@@ -107,7 +107,7 @@ namespace Backend.TableDataGateways.Oracle
                             Dilec oddec = new Dilec
                             {
                                 Id = reader.GetString(++i),
-                                IdLesniHospodarskyCelek = reader.GetString(++i),
+                                IdOddeleni = reader.GetString(++i),
                                 Kod = reader.GetString(++i),
                             };
                             result.Add(oddec);
