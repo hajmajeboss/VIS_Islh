@@ -1,4 +1,5 @@
 ﻿using Backend.TableDataGateways;
+using Backend.TableDataGateways.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,7 +17,7 @@ namespace Backend.Models
 
         private PorostniSkupina _psk;
         public PorostniSkupina PorostniSkupina { set { _psk = value; IdPorostniSkupina = value.Id; } }
-        public PorostniSkupina GetPorostniSkupina(ITableDataGateway gw)
+        public PorostniSkupina GetPorostniSkupina(IPorostniSkupinaTableGateway gw)
         {
             PorostniSkupina psk = (PorostniSkupina)gw.SelectOne(IdPorostniSkupina);
             return psk;
@@ -24,7 +25,7 @@ namespace Backend.Models
 
         private Drevina _drevina;
         public Drevina Drevina { set { _drevina = value; IdDrevina = value.Id; } }
-        public Drevina GetDrevina(ITableDataGateway gw)
+        public Drevina GetDrevina(IDrevinaTableGateway gw)
         {
             Drevina drevina = (Drevina)gw.SelectOne(IdDrevina);
             return drevina;

@@ -1,4 +1,5 @@
 ﻿using Backend.TableDataGateways;
+using Backend.TableDataGateways.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,7 +16,7 @@ namespace Backend.Models
         private OrganizacniUroven1 _orgUr1;
         public OrganizacniUroven1 OrganizacniUroven1 { set { _orgUr1 = value;  IdOrganizacniUroven1 = value.Id; } }
 
-        public OrganizacniUroven1 GetOrganizacniUroven1(ITableDataGateway gw)
+        public OrganizacniUroven1 GetOrganizacniUroven1(IOrganizacniUroven1TableGateway gw)
         {
             OrganizacniUroven1 orgUr1 = (OrganizacniUroven1)gw.SelectOne(IdOrganizacniUroven1);
             return orgUr1;

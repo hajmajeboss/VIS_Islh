@@ -1,4 +1,5 @@
 ﻿using Backend.TableDataGateways;
+using Backend.TableDataGateways.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +14,7 @@ namespace Backend.Models
         private Dilec _dil;
         public Dilec Dilec { set { _dil = value; IdDilec = value.Id; } }
 
-        public Dilec GetDilec(ITableDataGateway gw)
+        public Dilec GetDilec(IDilecTableGateway gw)
         {
             Dilec dil = (Dilec)gw.SelectOne(IdDilec);
             return dil;

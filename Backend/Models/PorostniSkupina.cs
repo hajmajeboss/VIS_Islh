@@ -1,4 +1,5 @@
 ﻿using Backend.TableDataGateways;
+using Backend.TableDataGateways.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +14,7 @@ namespace Backend.Models
         private Porost _por;
         public Porost Porost { set { _por = value; IdPorost = value.Id; } }
 
-        public Porost GetPorost(ITableDataGateway gw)
+        public Porost GetPorost(IPorostTableGateway gw)
         {
             Porost por = (Porost)gw.SelectOne(IdPorost);
             return por;

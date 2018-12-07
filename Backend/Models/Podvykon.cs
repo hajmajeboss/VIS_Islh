@@ -1,4 +1,5 @@
 ﻿using Backend.TableDataGateways;
+using Backend.TableDataGateways.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,7 +16,7 @@ namespace Backend.Models
         private Vykon _vykon;
         public Vykon Vykon { set { _vykon = value; IdVykon = value.Id; } }
 
-        public Vykon GetVykon(ITableDataGateway gw)
+        public Vykon GetVykon(IVykonTableGateway gw)
         {
             Vykon vykon = (Vykon)gw.SelectOne(IdVykon);
             return null;

@@ -1,4 +1,5 @@
 ﻿using Backend.TableDataGateways;
+using Backend.TableDataGateways.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,7 +17,7 @@ namespace Backend.Models
 
         private PorostniSkupina _psk;
         public PorostniSkupina PorostniSkupina { set { _psk = value; IdPorostniSkupina = value.Id; } }
-        public PorostniSkupina GetPorostniSkupina(ITableDataGateway gw)
+        public PorostniSkupina GetPorostniSkupina(IPorostniSkupinaTableGateway gw)
         {
             PorostniSkupina psk = (PorostniSkupina)gw.SelectOne(IdPorostniSkupina);
             return psk;
@@ -24,7 +25,7 @@ namespace Backend.Models
 
         private Podvykon _podvykon;
         public Podvykon Podvykon { set { _podvykon = value; IdPodvykon = value.Id; } }
-        public Podvykon GetPodvykon(ITableDataGateway gw)
+        public Podvykon GetPodvykon(IPodvykonTableGateway gw)
         {
             Podvykon podvykon = (Podvykon)gw.SelectOne(IdPodvykon);
             return podvykon;
@@ -32,7 +33,7 @@ namespace Backend.Models
 
         private DruhTezby _druhTezby;
         public DruhTezby DruhTezby { set { _druhTezby = value; IdDruhTezby = value.Id; } }
-        public DruhTezby GetDruhTezby(ITableDataGateway gw)
+        public DruhTezby GetDruhTezby(IDruhTezbyTableGateway gw)
         {
             DruhTezby druhTezby = (DruhTezby)gw.SelectOne(IdDruhTezby);
             return druhTezby;
@@ -40,7 +41,7 @@ namespace Backend.Models
 
         private Drevina _drevina;
         public Drevina Drevina { set { _drevina = value; IdDrevina = value.Id; } }
-        public Drevina GetDrevina(ITableDataGateway gw)
+        public Drevina GetDrevina(IDrevinaTableGateway gw)
         {
             Drevina drevina = (Drevina)gw.SelectOne(IdDrevina);
             return drevina;
