@@ -1,4 +1,5 @@
-﻿using Backend.TableDataGateways.Oracle;
+﻿using Backend.Models;
+using Backend.TableDataGateways.Oracle;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,7 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            OracleConnectionFactory factory = new OracleConnectionFactory();
-            OracleConnection conn = factory.GetOracleConnection();
-            Console.WriteLine(conn.State.ToString());
-            Console.ReadKey();
+
         }
     }
 }

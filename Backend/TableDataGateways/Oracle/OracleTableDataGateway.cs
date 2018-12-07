@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Backend.Models;
 using Oracle.ManagedDataAccess.Client;
@@ -8,7 +9,7 @@ namespace Backend.TableDataGateways.Oracle
 {
     public abstract class OracleTableDataGateway : ITableDataGateway
     {
-        protected OracleConnection Connection { get; set; }
+        protected OracleConnectionFactory ConnetionFactory { get; set; }
 
         public abstract bool Delete(Model obj);
         public abstract bool Insert(Model obj);
@@ -18,7 +19,15 @@ namespace Backend.TableDataGateways.Oracle
 
         protected OracleTableDataGateway()
         {
+            ConnetionFactory = new OracleConnectionFactory();
         }
 
+        protected void Log(string message)
+        {
+            using (StreamWriter wt = new StreamWriter("log.txt"))
+            {
+                wt.WriteLine(message);
+            }
+        }
     }
 }
