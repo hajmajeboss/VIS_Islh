@@ -11,6 +11,10 @@ namespace Backend.TableDataGateways.Oracle
     {
         private const string SELECT_ALL = "select id, kod from LesniHospodarskyCelek";
         private const string SELECT_ONE = "select id, kod from LesniHospodarskyCelek where id = :id";
+        private const string SELECT_BY_USER = 
+            "select lhc.id, lhc.kod from LesniHospodarskyCelek lhc" +
+            " left join LhcUzivatel lu on lu.id_lhc = lhc.id" +
+            " where lu.id_uzivatel = :id_uzivatel";
         private const string INSERT = "insert into LesniHospodarskyCelek(id, kod) values (:id, :kod)";
         private const string UPDATE = "update LesniHospodarskyCelek set kod = :kod where id = :id";
         private const string DELETE = "delete from LesniHospodarskyCelek where id = :id";
@@ -99,6 +103,39 @@ namespace Backend.TableDataGateways.Oracle
                     try
                     {
                         cmd.CommandText = SELECT_ALL;
+                        OracleDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            int i = -1;
+                            LesniHospodarskyCelek lesniHospodarskyCelek = new LesniHospodarskyCelek
+                            {
+                                Id = reader.GetString(++i),
+                                Kod = reader.GetString(++i),
+                            };
+                            result.Add(lesniHospodarskyCelek);
+                        }
+                        return result;
+                    }
+                    catch (OracleException oe)
+                    {
+                        Log(oe.Message);
+                        return null;
+                    }
+                }
+            }
+        }
+
+        public List<Model> SelectByUser(Uzivatel uzivatel)
+        {
+            List<Model> result = new List<Model>();
+            using (var c = ConnetionFactory.GetOracleConnection())
+            {
+                using (var cmd = c.CreateCommand())
+                {
+                    try
+                    {
+                        cmd.CommandText = SELECT_ALL;
+                        cmd.Parameters.Add(":id_uzivatel", uzivatel.Id);
                         OracleDataReader reader = cmd.ExecuteReader();
                         while (reader.Read())
                         {
