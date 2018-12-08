@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Backend.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace DesktopClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(Uzivatel uzivatel)
         {
             InitializeComponent();
+            Application.Current.MainWindow.WindowState = WindowState.Maximized;
+            userDetails.Content = uzivatel.Jmeno + ", " + uzivatel.Email;
         }
     }
 }
