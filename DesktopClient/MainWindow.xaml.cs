@@ -24,8 +24,14 @@ namespace DesktopClient
         public MainWindow(Uzivatel uzivatel)
         {
             InitializeComponent();
-            Application.Current.MainWindow.WindowState = WindowState.Maximized;
             userDetails.Content = uzivatel.Jmeno + ", " + uzivatel.Email;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            LesniHospodarskaEvidenceView lheview = new LesniHospodarskaEvidenceView();
+            lheview.Show();
+
         }
     }
 }

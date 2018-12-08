@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopClient"
         mc:Ignorable="d"
-        Title="LesniHospodarskaEvidenceView" Height="600" Width="900" 
+        Title="Informační systém lesního hospodáře - LHE" Height="690" Width="920" 
         WindowStartupLocation="CenterScreen"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -25,6 +25,19 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+
+        <StackPanel Background="White" materialDesign:ShadowAssist.ShadowDepth="Depth5"> 
+        <Menu Background="White" HorizontalAlignment="Right">
+            <MenuItem Header="Evidence">
+                <MenuItem Header="Aktualizovat"/>
+                <MenuItem Header="Ukončit"/>
+            </MenuItem>
+            <MenuItem Header="Nápověda">
+                <MenuItem Header="O aplikaci">
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        </StackPanel>
         <materialDesign:Card Grid.Row="1" Grid.Column="0" Margin="60" Padding="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid>
         <Grid.RowDefinitions>
@@ -51,51 +64,28 @@
 
                 <Button Content="FILTROVAT" Grid.Row="0" Grid.Column="4"></Button>
         <StackPanel Grid.Row="1" Grid.Column="0">
-        <Label Padding="0,0,0,10"  Content="LHC:" Width="150"></Label>
+                    <Label Padding="0,0,0,10"  Content="LHC:" Width="150" Foreground="#757575" FontSize="12"></Label>
         <ComboBox Width="150" Text="LHC">
             <ComboBoxItem Content="ComboBoxItem" HorizontalAlignment="Left" Width="148"/>
         </ComboBox>
-                    <Label  Padding="0,20,0,10" Content="Oddělení:" Width="150"></Label>
+                    <Label  Padding="0,20,0,10" Content="Oddělení:" Width="150" Foreground="#757575" FontSize="12"></Label>
         <ComboBox  Width="150"/>
-                    <Label Padding="0,20,0,10" Content="Dílec:" Width="150"></Label>
+                    <Label Padding="0,20,0,10" Content="Dílec:" Width="150" Foreground="#757575" FontSize="12"></Label>
         <ComboBox Width="150"/>
-                    <Label Padding="0,20,0,10" Content="Porost:" Width="150"></Label>
+                    <Label Padding="0,20,0,10" Content="Porost:" Width="150" Foreground="#757575" FontSize="12"></Label>
         <ComboBox Width="150"/>
-                    <Label Padding="0,20,0,10" Content="Porostní skupina:" Width="150"></Label>
+                    <Label Padding="0,20,0,10" Content="Porostní skupina:" Width="150" Foreground="#757575" FontSize="12"></Label>
         <ComboBox Width="150"/>
         </StackPanel>
 
-                <materialDesign:Card  Grid.Row="1" Grid.Column="1" MinWidth="600" Margin="40,0,0,0" Grid.ColumnSpan="4" VerticalAlignment="Stretch"> 
-                <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Výkon">
-                            
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="Podvýkon">
-
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="Dřevina">
-
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="Druh těžby">
-
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="Plocha [m2]">
-
-                        </DataGridTextColumn>
-
-                        <DataGridTextColumn Header="Množství">
-
-                        </DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-                </materialDesign:Card>
+                <materialDesign:Card  Grid.Row="1" Grid.Column="1" MinWidth="600" Margin="40,0,0,0" Grid.ColumnSpan="4" VerticalAlignment="Stretch"/>
                 <Label Content="Celkem: 0 záznamů" Grid.Row="3" Grid.Column="1" Margin="40,20,0,0"></Label>
-                <Button  Grid.Row="3" Grid.Column="2" Content="PŘIDAT ZÁZNAM" Background="#9DCD69" Margin="0,20,10,0"></Button>
+                <Button  Grid.Row="3" Grid.Column="2" Content="PŘIDAT ZÁZNAM"  Background="#9DCD69" Margin="0,20,10,0"></Button>
                 <Button  Grid.Row="3" Grid.Column="3" Content="EDITOVAT"  Margin="0,20,10,0"></Button>
                 <Button  Grid.Row="3" Grid.Column="4" Content="ODEBRAT" Background="#78AF3A" Margin="0,20,0,0"></Button>
             </Grid>
-            
+
+           
         </materialDesign:Card>
     </Grid>
 </Window>
