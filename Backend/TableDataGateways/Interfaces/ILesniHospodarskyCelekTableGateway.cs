@@ -7,6 +7,6 @@ namespace Backend.TableDataGateways.Interfaces
 {
     public interface ILesniHospodarskyCelekTableGateway : ITableDataGateway
     {
-        List<Model> SelectByUser(Uzivatel uzivatel)
+        List<Model> SelectByUser(Uzivatel uzivatel);
     }
 }
