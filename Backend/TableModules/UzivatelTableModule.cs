@@ -16,6 +16,10 @@ namespace Backend.TableModules
             this.db = db;
         }
 
+        /*
+         * Signs the user in and returns the user instance, or returns null if the provided credentials are invalid. 
+         */
+
         public Uzivatel TrySignIn(Uzivatel uzivatel)
         {
             Uzivatel u = (Uzivatel)db.UzivatelTableGateway.SelectByName(uzivatel.Username);

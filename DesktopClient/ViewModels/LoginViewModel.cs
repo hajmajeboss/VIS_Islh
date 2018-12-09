@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace DesktopClient.ViewModels
 {
@@ -15,6 +16,8 @@ namespace DesktopClient.ViewModels
     {
         private IStorageContext db;
         public event EventHandler OnRequestClose;
+
+        public ICommand LoginClickedCommand { get; set; }
 
         private string _username;
         public string Username { get { return _username; } set { _username = value; OnPropertyChanged("Username"); } }
@@ -25,6 +28,7 @@ namespace DesktopClient.ViewModels
         public LoginViewModel(IStorageContext db)
         {
             this.db = db;
+            LoginClickedCommand
         }
 
         public void Login_ClickedCommand(object sender, EventArgs args)
