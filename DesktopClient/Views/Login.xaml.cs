@@ -24,9 +24,11 @@ namespace DesktopClient
     {
         public Login()
         {
-            InitializeComponent();
+            
             var vm = new LoginViewModel(((App)App.Current).StorageContext);
             vm.OnRequestClose += (s, e) => this.Close();
+            DataContext = vm;
+            InitializeComponent();
         }
 
 

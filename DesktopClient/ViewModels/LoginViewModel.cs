@@ -22,17 +22,25 @@ namespace DesktopClient.ViewModels
         private string _password;
         public string Password { get { return _password; } set { _password = value; OnPropertyChanged("Password"); } }
 
+        public ICommand LoginClickedCommand { get; set; }
+
+        public LoginViewModel()
+        {
+
+        }
 
         public LoginViewModel(IStorageContext db)
         {
             this.db = db;
+            LoginClickedCommand = new RelayCommand(Login_ClickedCommand);
         }
 
-        public void Login_ClickedCommand(object sender, EventArgs args)
+        public void Login_ClickedCommand(object param)
         {
             Uzivatel u = new Uzivatel();
             u.Username = Username;
             u.Password = Password;
+
 
             var uzivatelModule = new UzivatelTableModule(db);
             Uzivatel sgn = uzivatelModule.TrySignIn(u);

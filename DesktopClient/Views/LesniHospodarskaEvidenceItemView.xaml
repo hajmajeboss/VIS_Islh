@@ -18,7 +18,7 @@
      FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
 
-        <materialDesign:Card Grid.Row="0" Grid.Column="0" Margin="40" Padding="40" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <materialDesign:Card Grid.Row="0" Grid.Column="0" Margin="0" Padding="40" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" ></ColumnDefinition>

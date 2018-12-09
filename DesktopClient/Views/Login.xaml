@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:DesktopClient.ViewModels"
         xmlns:local="clr-namespace:DesktopClient"
         mc:Ignorable="d"
         Title="Informační systém lesního hospodáře - Přihlásit se" Height="600" Width="800" MinHeight="600" MinWidth="600"
@@ -29,8 +30,8 @@
         <Label Grid.Row="0" Grid.Column="0" Content="Přihlašovací jméno" Margin="20,32,20,10"  Padding="0" Width="200"></Label>
         <TextBox Text="{Binding Path=Username, Mode=TwoWay}" Grid.Row="1"  Grid.Column="0" Margin="32,0 32,0" Width="200" Padding="0"></TextBox>
                 <Label Grid.Row="2" Grid.Column="0" Content="Heslo" Margin="32,20,32,10" Width="200" Padding="0"></Label>
-        <PasswordBox  Grid.Row="3"  Grid.Column="0" Margin="32,0,32,0" Width="200"></PasswordBox>
-        <Button Grid.Row="4"  Command="{Binding }" Content="PŘIHLÁSIT SE"  Margin="32,32,20,32" HorizontalAlignment="Center" ></Button>
+                <TextBox Text="{Binding Password, Mode=TwoWay}"  Grid.Row="3"  Grid.Column="0" Margin="32,0,32,0" Width="200"></TextBox>
+        <Button Grid.Row="4" Command="{Binding LoginClickedCommand}" Content="PŘIHLÁSIT SE"  Margin="32,32,20,32" HorizontalAlignment="Center" ></Button>
             </Grid>
         </materialDesign:Card>
     </Grid>
