@@ -1,5 +1,6 @@
 ﻿using Backend.Models;
 using Backend.TableDataGateways.Interfaces;
+using Backend.TableDataGateways.StorageContexts;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,16 +9,16 @@ namespace Backend.TableModules
 {
     public class UzivatelTableModule
     {
-        IUzivatelTableGateway gateway;
+        IStorageContext db;
 
-        public UzivatelTableModule(IUzivatelTableGateway gw)
+        public UzivatelTableModule(IStorageContext db)
         {
-            gateway = gw;
+            this.db = db;
         }
 
         public Uzivatel TrySignIn(Uzivatel uzivatel)
         {
-            Uzivatel u = (Uzivatel)gateway.SelectByName(uzivatel.Username);
+            Uzivatel u = (Uzivatel)db.UzivatelTableGateway.SelectByName(uzivatel.Username);
             if (u != null && u.Password == uzivatel.Password)
             {
                 return u;

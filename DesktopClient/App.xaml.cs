@@ -1,5 +1,6 @@
 ﻿using Backend.TableDataGateways.Interfaces;
 using Backend.TableDataGateways.Oracle;
+using Backend.TableDataGateways.StorageContexts;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -17,11 +18,11 @@ namespace DesktopClient
 
     public partial class App : Application
     {
-        public IUzivatelTableGateway UzivatelTableGateway { get; set; }
+        public IStorageContext StorageContext { get; set; }
 
         public App()
         {
-            UzivatelTableGateway = new UzivatelTableGateway();
+            StorageContext = new OracleDatabaseContext();
         }
 
     }
