@@ -15,9 +15,7 @@ namespace DesktopClient.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         private IStorageContext db;
-        public event EventHandler OnRequestClose;
-
-        public ICommand LoginClickedCommand { get; set; }
+        public event EventHandler OnRequestClose;     
 
         private string _username;
         public string Username { get { return _username; } set { _username = value; OnPropertyChanged("Username"); } }
@@ -28,7 +26,6 @@ namespace DesktopClient.ViewModels
         public LoginViewModel(IStorageContext db)
         {
             this.db = db;
-            LoginClickedCommand
         }
 
         public void Login_ClickedCommand(object sender, EventArgs args)

@@ -38,7 +38,7 @@
             </MenuItem>
         </Menu>
         </StackPanel>
-        <materialDesign:Card Grid.Row="1" Grid.Column="0" Margin="60" Padding="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <materialDesign:Card Grid.Row="1" Grid.Column="0" Margin="40" Padding="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
