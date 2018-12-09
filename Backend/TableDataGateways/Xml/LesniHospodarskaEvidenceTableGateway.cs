@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Backend.Models;
+using Backend.TableDataGateways.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using Backend.Models;
 
 namespace Backend.TableDataGateways.Xml
 {
-    public class VykonTableGateway : XmlTableDataGateway
+    public class LesniHospodarskaEvidenceTableGateway : XmlTableDataGateway, ILesniHospodarskaEvidenceTableGateway
     {
         public override bool Delete(Model obj)
         {

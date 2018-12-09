@@ -1,4 +1,6 @@
 ﻿using Backend.TableDataGateways.Interfaces;
+using Backend.TableDataGateways.Oracle;
+using Backend.TableDataGateways.Xml;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -26,5 +28,30 @@ namespace Backend.TableDataGateways.StorageContexts
         public IUzivatelTableGateway UzivatelTableGateway { get; set; }
         public IVykonTableGateway VykonTableGateway { get; set; }
         public IZalesneniTableGateway ZalesneniTableGateway { get; set; }
+
+        public XmlStorageContext()
+        {
+            DilecTableGateway = new DilecTableGateway();
+            DrevinaTableGateway = new DrevinaTableGateway();
+            DruhTezbyTableGateway = new DruhTezbyTableGateway();
+            HolinaTableGateway = new HolinaTableGateway();
+            LesniHospodarskaEvidenceTableGateway = new Xml.LesniHospodarskaEvidenceTableGateway();
+            LesniHospodarskyCelekTableGateway = new LesniHospodarskyCelekTableGateway();
+            LokalitaTableGateway = new LokalitaTableGateway();
+            OddeleniTableGateway = new OddeleniTableGateway();
+            OdvozniListekTableGateway = new OdvozniListekTableGateway();
+            OrganizacniUroven1TableGateway = new OrganizacniUroven1TableGateway();
+            OrganizacniUroven2TableGateway = new OrganizacniUroven2TableGateway();
+            OrganizacniUroven3TableGateway = new OrganizacniUroven3TableGateway();
+            PodvykonTableGateway = new PodvykonTableGateway();
+            PorostniSkupinaTableGateway = new PorostniSkupinaTableGateway();
+            PorostTableGateway = new PorostTableGateway();
+            SortimentTableGateway = new SortimentTableGateway();
+            UzivatelTableGateway = new UzivatelTableGateway();
+            VykonTableGateway = new VykonTableGateway();
+            ZalesneniTableGateway = new ZalesneniTableGateway();
+        }
     }
+
+  
 }
