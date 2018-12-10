@@ -1,4 +1,6 @@
 ﻿using Backend.Models;
+using Backend.TableDataGateways.StorageContexts;
+using DesktopClient.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,15 +25,11 @@ namespace DesktopClient
     {
         public MainWindow(Uzivatel uzivatel)
         {
+            var vm = new MainWindowViewModel(((App)App.Current).StorageContext, uzivatel);
+            vm.OnRequestClose += (s, e) => this.Close();
+            DataContext = vm;
             InitializeComponent();
-            userDetails.Content = uzivatel.Jmeno + ", " + uzivatel.Email;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            LesniHospodarskaEvidenceView lheview = new LesniHospodarskaEvidenceView();
-            lheview.Show();
-
-        }
     }
 }

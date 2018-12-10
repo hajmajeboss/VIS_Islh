@@ -26,8 +26,8 @@
         <StackPanel  materialDesign:ShadowAssist.ShadowDepth="Depth5" Grid.Row="0">
             <Menu HorizontalAlignment="Right">
                 <MenuItem Header="Aplikace">
-                    <MenuItem Header="Odhlásit se"/>
-                    <MenuItem Header="Ukončit"/>
+                    <MenuItem Header="Odhlásit se" Command="{Binding SignOffCommand}"/>
+                    <MenuItem Header="Ukončit" Command="{Binding CloseCommand}"/>
                 </MenuItem>
                 <MenuItem Header="Nápověda">
                     <MenuItem Header="O aplikaci">
@@ -44,11 +44,11 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="1" Grid.Column="0"  Content="Informační systém lesního hospodáře" HorizontalAlignment="Left" Margin="0,0,0,0"  FontSize="20" />
-                <Label x:Name="userDetails" Grid.Row="2" Grid.Column="0" Content="Petr Heinz, p.heinz@email.cz" Margin="0,0,0,10"></Label>
+                <Label  Grid.Row="2" Grid.Column="0" Content="{Binding UserInfo, Mode=TwoWay}" Margin="0,0,0,10"></Label>
 
 
                 <StackPanel Orientation="Horizontal" Grid.Row="3">
-                    <Button Content="LHE" Click="Button_Click" FontWeight="Bold"  Padding="20" Margin="0,10,20,10" Height="200" Width="200"/>
+                    <Button Content="LHE" Command="{Binding OpenLheCommand}" FontWeight="Bold"  Padding="20" Margin="0,10,20,10" Height="200" Width="200"/>
                     <Button Content="ZALESNĚNÍ" Background="#9FCE6C" FontWeight="Bold" Padding="20" Margin="0,10,20,10"   Height="200" Width="200"/>
                     <Button Content="HOLINY" Background="#B8DA92" FontWeight="Bold" Padding="20" Margin="0,10,20,10" Height="200" Width="200"/>
                     <Button Content="ODVOZY" Background="#D5E9BE" FontWeight="Bold" Padding="20" Margin="0,10,20,10" Height="200" Width="200"/>

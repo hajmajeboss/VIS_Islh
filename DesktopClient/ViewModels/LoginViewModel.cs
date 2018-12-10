@@ -15,7 +15,6 @@ namespace DesktopClient.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         private IStorageContext db;
-        public event EventHandler OnRequestClose;     
 
         private string _username;
         public string Username { get { return _username; } set { _username = value; OnPropertyChanged("Username"); } }
@@ -49,7 +48,7 @@ namespace DesktopClient.ViewModels
                 MainWindow main = new MainWindow(sgn);
 
                 main.Show();
-                OnRequestClose(this, new EventArgs());
+                Close();
             }
             else if (sgn != null && sgn.Role != 2)
             {

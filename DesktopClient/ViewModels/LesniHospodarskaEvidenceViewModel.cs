@@ -1,4 +1,5 @@
-﻿using Backend.TableDataGateways.StorageContexts;
+﻿using Backend.Models;
+using Backend.TableDataGateways.StorageContexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace DesktopClient.ViewModels
     {
         private IStorageContext db;
 
-        public LesniHospodarskaEvidenceViewModel(IStorageContext db)
+        public LesniHospodarskaEvidenceViewModel(IStorageContext db, Uzivatel uzivatel)
         {
             this.db = db;
         }

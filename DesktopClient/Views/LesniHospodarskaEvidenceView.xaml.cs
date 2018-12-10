@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Backend.Models;
+using Backend.TableDataGateways.StorageContexts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +21,7 @@ namespace DesktopClient
     /// </summary>
     public partial class LesniHospodarskaEvidenceView : Window
     {
-        public LesniHospodarskaEvidenceView()
+        public LesniHospodarskaEvidenceView(Uzivatel uzivatel)
         {
             InitializeComponent();
         }
