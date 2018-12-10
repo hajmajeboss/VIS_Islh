@@ -65,8 +65,8 @@
                 <Button Content="FILTROVAT" Grid.Row="0" Grid.Column="4"></Button>
         <StackPanel Grid.Row="1" Grid.Column="0">
                     <Label Padding="0,0,0,10"  Content="LHC:" Width="150" Foreground="#757575" FontSize="12" FontWeight="Bold"></Label>
-        <ComboBox Width="150" Text="LHC">
-            <ComboBoxItem Content="ComboBoxItem" HorizontalAlignment="Left" Width="148"/>
+        <ComboBox  ItemsSource="{Binding LhcList, Mode=TwoWay}" SelectedItem="{Binding LhcListSelected, Mode=TwoWay}" Width="150" Text="LHC">
+           
         </ComboBox>
                     <Label  Padding="0,20,0,10" Content="Oddělení:" Width="150" Foreground="#757575" FontSize="12"  FontWeight="Bold"></Label>
         <ComboBox  Width="150"/>

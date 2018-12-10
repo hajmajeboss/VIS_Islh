@@ -1,5 +1,6 @@
 ﻿using Backend.Models;
 using Backend.TableDataGateways.StorageContexts;
+using DesktopClient.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,10 @@ namespace DesktopClient
     {
         public LesniHospodarskaEvidenceView(Uzivatel uzivatel)
         {
+            var vm = new LesniHospodarskaEvidenceViewModel(((App)App.Current).StorageContext, uzivatel);
+            DataContext = vm;
+            vm.OnRequestClose += (s, e) => this.Close();
             InitializeComponent();
-        }
-
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }
