@@ -36,7 +36,7 @@ namespace DesktopClient.ViewModels
         public DateTime Datum { get { return _datum; } set { _datum = value; OnPropertyChanged("Datum"); } }
 
         private Vykon _vykon;
-        public Vykon Vykon { get { return _vykon; } set { _vykon = value; OnPropertyChanged("Vykon"); PodvykonList = podvykonTableModule.LoadPodvykony(value); } }
+        public Vykon Vykon { get { return _vykon; } set { _vykon = value; OnPropertyChanged("Vykon");  if (Vykon != null ) PodvykonList = podvykonTableModule.LoadPodvykony(value); } }
 
         private Podvykon _podvykon;
         public Podvykon Podvykon { get { return _podvykon; } set { _podvykon = value; OnPropertyChanged("Podvykon"); } }
@@ -62,6 +62,9 @@ namespace DesktopClient.ViewModels
         private string _addEditLabel;
         public string AddEditLabel { get { return _addEditLabel; } set { _addEditLabel = value; OnPropertyChanged("AddEditLabel"); } }
 
+        private string _windowLabel;
+        public string WindowLabel { get { return _windowLabel; } set { _windowLabel = value; OnPropertyChanged("WindowLabel"); } }
+
         private PorostniSkupina psk;
         private LesniHospodarskaEvidence lheItem;
 
@@ -83,9 +86,6 @@ namespace DesktopClient.ViewModels
             if (lheItem != null)
             {
                 Datum = lheItem.Datum;
-                /*
-                Podvykon = lheItem.GetPodvykon(db.PodvykonTableGateway);
-                Vykon = Podvykon.GetVykon(db.VykonTableGateway);*/
                 Vykon = VykonList.Find(x => x.Id.Equals(lheItem.Podvykon.IdVykon));
                 Podvykon = PodvykonList.Find(x => x.Id.Equals(lheItem.IdPodvykon));
                 DruhTezby = DruhTezbyList.Find(x => x.Id.Equals(lheItem.IdDruhTezby));
@@ -96,11 +96,13 @@ namespace DesktopClient.ViewModels
 
                 AddEditCommand = new RelayCommand(EditButton_ClickCommand);
                 AddEditLabel = "Aktualizovat";
+                WindowLabel = "Aktualizovat záznam LHE";
             }
             else
             {
                 AddEditCommand = new RelayCommand(AddButton_ClickCommand);
                 AddEditLabel = "Přidat záznam";
+                WindowLabel = "Přidat záznam LHE";
                 Datum = DateTime.Now;
             }
             StornoCommand = new RelayCommand(StornoButton_ClickCommand);

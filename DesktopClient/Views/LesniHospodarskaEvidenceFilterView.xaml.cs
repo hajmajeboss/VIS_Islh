@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesktopClient.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,9 @@ namespace DesktopClient.Views
     {
         public LesniHospodarskaEvidenceFilterView()
         {
+            var vm = new LesniHospodarskaEvidenceFilterViewModel(((App)App.Current).StorageContext);
+            DataContext = vm;
+            vm.OnRequestClose += (s, e) => this.Close();
             InitializeComponent();
         }
     }
