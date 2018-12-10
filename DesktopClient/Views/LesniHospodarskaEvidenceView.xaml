@@ -69,13 +69,13 @@
            
         </ComboBox>
                     <Label  Padding="0,20,0,10" Content="Oddělení:" Width="150" Foreground="#757575" FontSize="12"  FontWeight="Bold"></Label>
-        <ComboBox  Width="150"/>
+        <ComboBox  ItemsSource="{Binding OddList, Mode=TwoWay}" SelectedItem="{Binding OddListSelected, Mode=TwoWay}" Width="150"/>
                     <Label Padding="0,20,0,10" Content="Dílec:" Width="150" Foreground="#757575" FontSize="12"  FontWeight="Bold"></Label>
-        <ComboBox Width="150"/>
+        <ComboBox ItemsSource="{Binding DilList, Mode=TwoWay}" SelectedItem="{Binding DilListSelected, Mode=TwoWay}" Width="150"/>
                     <Label Padding="0,20,0,10" Content="Porost:" Width="150" Foreground="#757575" FontSize="12"  FontWeight="Bold"></Label>
-        <ComboBox Width="150"/>
+        <ComboBox ItemsSource="{Binding PorList, Mode=TwoWay}" SelectedItem="{Binding PorListSelected, Mode=TwoWay}" Width="150"/>
                     <Label Padding="0,20,0,10" Content="Porostní skupina:" Width="150" Foreground="#757575" FontSize="12"  FontWeight="Bold"></Label>
-        <ComboBox Width="150"/>
+        <ComboBox ItemsSource="{Binding PskList, Mode=TwoWay}" SelectedItem="{Binding PskListSelected, Mode=TwoWay}" Width="150"/>
         </StackPanel>
 
                 <materialDesign:Card  Grid.Row="1" Grid.Column="1" MinWidth="600" Margin="40,0,0,0" Grid.ColumnSpan="4" VerticalAlignment="Stretch">

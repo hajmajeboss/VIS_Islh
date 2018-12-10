@@ -19,5 +19,10 @@ namespace Backend.Models
             LesniHospodarskyCelek lhc = (LesniHospodarskyCelek)gw.SelectOne(IdLesniHospodarskyCelek);
             return lhc;
         }
+
+        public override string ToString()
+        {
+            return Kod;
+        }
     }
 }

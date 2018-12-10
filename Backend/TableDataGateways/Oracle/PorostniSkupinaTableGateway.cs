@@ -11,6 +11,7 @@ namespace Backend.TableDataGateways.Oracle
     {
         private const string SELECT_ALL = "select id, id_por, kod from PorostniSkupina";
         private const string SELECT_ONE = "select id, id_por, kod from PorostniSkupina where id = :id";
+        private const string SELECT_POR = "select id, id_por, kod from PorostniSkupina where id_por = :id_por";
         private const string INSERT = "insert into PorostniSkupina(id, id_por, kod) values (:id, :id_por, :kod)";
         private const string UPDATE = "update PorostniSkupina set id_por = :id_por, kod = :kod where id = :id";
         private const string DELETE = "delete from PorostniSkupina where id = :id";
@@ -130,5 +131,38 @@ namespace Backend.TableDataGateways.Oracle
             return result.FindLast(x => x.Id.Equals(id));
         }
 
+        public List<Model> SelectByPorost(Model por)
+        {
+            List<Model> result = new List<Model>();
+            using (var c = ConnetionFactory.GetOracleConnection())
+            {
+                using (var cmd = c.CreateCommand())
+                {
+                    try
+                    {
+                        cmd.CommandText = SELECT_POR;
+                        cmd.Parameters.Add(":id_por", por.Id);
+                        OracleDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            int i = -1;
+                            PorostniSkupina porec = new PorostniSkupina
+                            {
+                                Id = reader.GetString(++i),
+                                IdPorost = reader.GetString(++i),
+                                Kod = reader.GetString(++i),
+                            };
+                            result.Add(porec);
+                        }
+                        return result;
+                    }
+                    catch (OracleException oe)
+                    {
+                        Log(oe.Message);
+                        return null;
+                    }
+                }
+            }
+        }
     }
 }

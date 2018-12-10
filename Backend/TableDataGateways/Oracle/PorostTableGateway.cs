@@ -11,6 +11,7 @@ namespace Backend.TableDataGateways.Oracle
     {
         private const string SELECT_ALL = "select id, id_dil, kod from Porost";
         private const string SELECT_ONE = "select id, id_dil, kod from Porost where id = :id";
+        private const string SELECT_DIL = "select id, id_dil, kod from Porost where id_dil = :id_dil";
         private const string INSERT = "insert into Porost(id, id_dil, kod) values (:id, :id_dil, :kod)";
         private const string UPDATE = "update Porost set id_dil = :id_dil, kod = :kod where id = :id";
         private const string DELETE = "delete from Porost where id = :id";
@@ -130,5 +131,38 @@ namespace Backend.TableDataGateways.Oracle
             return result.FindLast(x => x.Id.Equals(id));
         }
 
+        public List<Model> SelectByDilec(Model dil)
+        {
+            List<Model> result = new List<Model>();
+            using (var c = ConnetionFactory.GetOracleConnection())
+            {
+                using (var cmd = c.CreateCommand())
+                {
+                    try
+                    {
+                        cmd.CommandText = SELECT_DIL;
+                        cmd.Parameters.Add(":id_dil", dil.Id);
+                        OracleDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            int i = -1;
+                            Porost dilec = new Porost
+                            {
+                                Id = reader.GetString(++i),
+                                IdDilec = reader.GetString(++i),
+                                Kod = reader.GetString(++i),
+                            };
+                            result.Add(dilec);
+                        }
+                        return result;
+                    }
+                    catch (OracleException oe)
+                    {
+                        Log(oe.Message);
+                        return null;
+                    }
+                }
+            }
+        }
     }
 }

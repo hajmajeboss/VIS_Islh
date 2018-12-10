@@ -19,5 +19,10 @@ namespace Backend.Models
             Porost por = (Porost)gw.SelectOne(IdPorost);
             return por;
         }
+
+        public override string ToString()
+        {
+            return Kod;
+        }
     }
 }

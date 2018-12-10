@@ -19,5 +19,10 @@ namespace Backend.Models
             Oddeleni odd = (Oddeleni)gw.SelectOne(IdOddeleni);
             return odd;
         }
+
+        public override string ToString()
+        {
+            return Kod;
+        }
     }
 }

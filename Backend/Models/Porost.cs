@@ -19,5 +19,10 @@ namespace Backend.Models
             Dilec dil = (Dilec)gw.SelectOne(IdDilec);
             return dil;
         }
+
+        public override string ToString()
+        {
+            return Kod;
+        }
     }
 }
