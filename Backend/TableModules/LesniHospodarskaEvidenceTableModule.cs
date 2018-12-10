@@ -36,7 +36,7 @@ namespace Backend.TableModules
                 }
                 if (FilterConfig.Vykon != null)
                 {
-                    filteredLhe = filteredLhe.FindAll(x => x.GetVykon(db.VykonTableGateway).Id.Equals(FilterConfig.Vykon.Id)).ToList();
+                    filteredLhe = filteredLhe.FindAll(x => x.GetPodvykon(db.PodvykonTableGateway).GetVykon(db.VykonTableGateway).Id.Equals(FilterConfig.Vykon.Id)).ToList();
                 }
                 if (FilterConfig.Podvykon != null)
                 {

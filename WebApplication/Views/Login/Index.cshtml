@@ -1,0 +1,31 @@
+﻿@model LoginForm
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="mdl-card mdl-shadow--2dp" style=" margin: 40px auto; padding: 40px;">
+    @using (var form = Html.BeginForm())
+    {
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.LabelFor(x => x.Username, new { @class = "mdl-textfield__label" })
+            <br />
+            @Html.TextBoxFor(x => x.Username, new { @class = "mdl-textfield__input" })
+        </div>
+        <br />
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.LabelFor(x => x.Password, new { @class = "mdl-textfield__label" })
+            <br />
+            @Html.TextBoxFor(x => x.Password, new { @class = "mdl-textfield__input" })
+        </div>
+
+        <br />
+        <center>
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-top: 20px;">
+                Přihlásit se
+            </button>
+        </center>
+    }
+</div>
+
+
