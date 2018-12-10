@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "ISLH - Mapa holin";
+}
+
+<style>
+    .map {
+        height: 60vh;
+        width: 100%;
+    }
+</style>
+
+    <div style="margin: 80px; padding: 40px; width: auto; height:auto;" class=" mdl-card mdl-shadow--2dp" >
+    <h3 style="margin-bottom: 10px;" > Mapa holin</h3 >
+
+    <div id="map" class="map"> </div >
+
+    <script >
+    var styles = [ 'Aerial',
+    ];
+    var layers = [];
+    var i, ii;
+    for (i = 0, ii = styles.length; i < ii; ++i) {
+        layers .push(new ol.layer.Tile({
+                visible: true,
+                preload: Infinity,
+                source: new ol.source.BingMaps({
+                    key: 'AoDBVH_fPVVh24GvTWCubBoJs0N_zJE9QM6lHQUik3D2FKONCm8eewGfazU371Yx ',
+                    imagerySet: styles[i]
+                })
+            }));
+    }
+
+    var map = new ol.Map({
+            layers: layers,
+            height: '50%',
+            loadTilesWhileInteracting: true,
+            target: 'map',
+            view: new ol.View({
+                center: ol.proj.fromLonLat([18.17111,49.825001]),
+                zoom: 13
+            })
+        });
+
+    </script >
+    </div >
