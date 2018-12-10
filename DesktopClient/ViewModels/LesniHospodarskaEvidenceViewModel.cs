@@ -1,4 +1,5 @@
-﻿using Backend.Models;
+﻿using Backend.Filters;
+using Backend.Models;
 using Backend.TableDataGateways.StorageContexts;
 using Backend.TableModules;
 using DesktopClient.Views;
@@ -57,7 +58,7 @@ namespace DesktopClient.ViewModels
         public List<PorostniSkupina> PskList { get { return _pskList; } set { _pskList = value; LheList = null; OnPropertyChanged("PskList"); } }
 
         private PorostniSkupina _pskListSelected;
-        public PorostniSkupina PskListSelected { get { return _pskListSelected; } set { _pskListSelected = value; OnPropertyChanged("PskListSelected"); LheList = lheTableModule.LoadLhe(value); } }
+        public PorostniSkupina PskListSelected { get { return _pskListSelected; } set { _pskListSelected = value; OnPropertyChanged("PskListSelected"); LheList = lheTableModule.LoadLhe(value); GetNumberOfEntries(); } }
 
         private List<LesniHospodarskaEvidence> _lheList;
         public List<LesniHospodarskaEvidence> LheList { get { return _lheList; } set { _lheList = value; OnPropertyChanged("LheList"); } }
@@ -71,6 +72,9 @@ namespace DesktopClient.ViewModels
         public LesniHospodarskaEvidenceViewModel(IStorageContext db, Uzivatel uzivatel)
         {
             this.db = db;
+
+            LheObserver.Instance.Listeners.Add(this);
+
             lheTableModule = new LesniHospodarskaEvidenceTableModule(db);
             lhcTableModule = new LesniHospodarskyCelekTableModule(db);
             oddTableModule = new OddeleniTableModule(db);
@@ -86,6 +90,8 @@ namespace DesktopClient.ViewModels
             CloseCommand = new RelayCommand(CloseButton_ClickCommand);
 
             LhcList = lhcTableModule.LoadLhc(uzivatel);
+
+            NumberOfEntries = "Celkem záznamů: 0";
         }
 
         public void FilterButton_ClickCommand(object param)
@@ -154,11 +160,34 @@ namespace DesktopClient.ViewModels
         public void UpdateLheButton_ClickCommand(object param)
         {
             LheList = lheTableModule.LoadLhe(PskListSelected);
+            GetNumberOfEntries();
         }
 
         public void CloseButton_ClickCommand(object param)
         {
             Close();
+        }
+
+        public void GetNumberOfEntries()
+        {
+            if (LheList != null)
+            {
+                NumberOfEntries = "Celkem záznamů: " + LheList.Count;
+            }
+        }
+
+        public void OnFilterConfigChanged(LheFilterConfig cfg)
+        {
+            lheTableModule.FilterConfig = cfg;
+            OnLheTableChanged();
+        }
+
+        public void OnLheTableChanged()
+        {
+            if (PskListSelected != null)
+            {
+                LheList = lheTableModule.LoadLhe(PskListSelected);
+            }
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using Backend.Models;
+﻿using Backend.Filters;
+using Backend.Models;
 using Backend.TableDataGateways.StorageContexts;
 using Backend.TableModules;
 using System;
@@ -68,6 +69,14 @@ namespace DesktopClient.ViewModels
 
         public void FilterButton_ClickCommand(object param)
         {
+            var cfg = new LheFilterConfig()
+            {
+                Vykon = this.Vykon,
+                Podvykon = this.Podvykon,
+                DruhTezby = this.DruhTezby,
+                Drevina = this.Drevina
+            };
+            LheObserver.Instance.NotifyFilterConfigChanged(cfg);
             Close();
         }
 

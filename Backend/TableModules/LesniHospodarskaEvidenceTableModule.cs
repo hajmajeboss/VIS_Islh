@@ -4,12 +4,14 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using Backend.Filters;
 
 namespace Backend.TableModules
 {
     public class LesniHospodarskaEvidenceTableModule
     {
         IStorageContext db;
+        public LheFilterConfig FilterConfig { get; set; }
 
         public LesniHospodarskaEvidenceTableModule(IStorageContext db)
         {
@@ -22,7 +24,27 @@ namespace Backend.TableModules
             var lhe = res.Cast<LesniHospodarskaEvidence>().ToList();
             List<LesniHospodarskaEvidence> filteredLhe = lhe.FindAll(x => x.IdPorostniSkupina.Equals(psk.Id)).ToList();
 
-            foreach(var item in filteredLhe)
+            if (FilterConfig != null)
+            {
+                if (FilterConfig.Drevina != null)
+                {
+                    filteredLhe = filteredLhe.FindAll(x => x.IdDrevina.Equals(FilterConfig.Drevina.Id)).ToList();
+                }
+                if (FilterConfig.DruhTezby != null)
+                {
+                    filteredLhe = filteredLhe.FindAll(x => x.IdDruhTezby.Equals(FilterConfig.DruhTezby.Id)).ToList();
+                }
+                if (FilterConfig.Vykon != null)
+                {
+                    filteredLhe = filteredLhe.FindAll(x => x.GetVykon(db.VykonTableGateway).Id.Equals(FilterConfig.Vykon.Id)).ToList();
+                }
+                if (FilterConfig.Podvykon != null)
+                {
+                    filteredLhe = filteredLhe.FindAll(x => x.IdPodvykon.Equals(FilterConfig.Podvykon.Id)).ToList();
+                }
+            }
+
+            foreach (var item in filteredLhe)
             {
                 item.GetPodvykon(db.PodvykonTableGateway);
                 item.GetDrevina(db.DrevinaTableGateway);
@@ -32,6 +54,7 @@ namespace Backend.TableModules
 
             return filteredLhe;
         }
+
 
         public void AddLhe(LesniHospodarskaEvidence lhe)
         {

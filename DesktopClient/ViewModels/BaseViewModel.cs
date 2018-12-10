@@ -27,5 +27,7 @@ namespace DesktopClient.ViewModels
                 handler(this, new EventArgs());
             }
         }
+ 
+       
     }
 }

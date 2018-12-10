@@ -130,6 +130,7 @@ namespace DesktopClient.ViewModels
             };
 
             lheTableModule.AddLhe(lhe);
+            LheObserver.Instance.NotifyLheTableChanged();
             Close();
         }
 
@@ -149,6 +150,7 @@ namespace DesktopClient.ViewModels
             };
 
             lheTableModule.UpdateLhe(lhe);
+            LheObserver.Instance.NotifyLheTableChanged();
             Close();
         }
 

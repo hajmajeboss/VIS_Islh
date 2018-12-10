@@ -92,7 +92,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </materialDesign:Card>
-                <Label Content="Celkem: 0 záznamů" Grid.Row="3" Grid.Column="1" Margin="40,20,0,0"></Label>
+                <Label Content="{Binding NumberOfEntries, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" Margin="40,20,0,0"></Label>
                 <Button Command="{Binding AddLheCommand}" Grid.Row="3" Grid.Column="2" Content="PŘIDAT ZÁZNAM"   Margin="0,20,10,0"></Button>
                 <Button Command="{Binding EditLheCommand}" Grid.Row="3" Grid.Column="3" Content="EDITOVAT"  Margin="0,20,10,0"></Button>
                 <Button Command="{Binding RemoveLheCommand}" Grid.Row="3" Grid.Column="4" Content="ODEBRAT" Margin="0,20,0,0"></Button>
