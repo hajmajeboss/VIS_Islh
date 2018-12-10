@@ -49,9 +49,9 @@
 
                 <StackPanel Orientation="Horizontal" Grid.Row="3">
                     <Button Content="LHE" Command="{Binding OpenLheCommand}" FontWeight="Bold"  Padding="20" Margin="0,10,20,10" Height="200" Width="200"/>
-                    <Button Content="ZALESNĚNÍ" Background="#9FCE6C" FontWeight="Bold" Padding="20" Margin="0,10,20,10"   Height="200" Width="200"/>
-                    <Button Content="HOLINY" Background="#B8DA92" FontWeight="Bold" Padding="20" Margin="0,10,20,10" Height="200" Width="200"/>
-                    <Button Content="ODVOZY" Background="#D5E9BE" FontWeight="Bold" Padding="20" Margin="0,10,20,10" Height="200" Width="200"/>
+                    <Button Content="ZALESNĚNÍ" Background="#65BC69" FontWeight="Bold" Padding="20" Margin="0,10,20,10"   Height="200" Width="200"/>
+                    <Button Content="HOLINY" Background="#82C885" FontWeight="Bold" Padding="20" Margin="0,10,20,10" Height="200" Width="200"/>
+                    <Button Content="ODVOZY" Background="#9FD5A3" FontWeight="Bold" Padding="20" Margin="0,10,20,10" Height="200" Width="200"/>
                 </StackPanel>
             </Grid>
         </materialDesign:Card>

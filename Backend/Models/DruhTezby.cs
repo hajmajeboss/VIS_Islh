@@ -9,5 +9,10 @@ namespace Backend.Models
         public string Popis { get; set; }
         public string Kod { get; set; }
         public string Poznamka { get; set; }
+
+        public override string ToString()
+        {
+            return Kod + " - " + Popis;
+        }
     }
 }

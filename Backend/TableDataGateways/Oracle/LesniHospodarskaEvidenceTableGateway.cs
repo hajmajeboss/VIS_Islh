@@ -10,23 +10,25 @@ namespace Backend.TableDataGateways.Oracle
     public class LesniHospodarskaEvidenceTableGateway : OracleTableDataGateway, ILesniHospodarskaEvidenceTableGateway
     {
         private const string SELECT_ALL = 
-            "select id, id_psk, id_podvykon, id_druhtezby, id_drevina, plocha, mnozstvi" +
+            "select id, id_psk, id_podvykon, id_druhtezby, id_drevina, plocha, mnozstvi, datum, poznamka" +
             " from LesniHospodarskaEvidence";
         private const string SELECT_ONE = 
-            "select id, id_psk, id_podvykon, id_druhtezby, id_drevina, plocha, mnozstvi" +
+            "select id, id_psk, id_podvykon, id_druhtezby, id_drevina, plocha, mnozstvi, datum, poznamka" +
             " from LesniHospodarskaEvidence" +
             " where id = :id";
         private const string INSERT = 
-            "insert into LesniHospodarskaEvidence(id, id_psk, id_podvykon, id_druhtezby id_drevina, plocha, mnozstvi)" +
-            " values (:id, :id_psk, :id_podvykon, :id_druhtezby, :id_drevina, :plocha, :mnozstvi)";
-        private const string UPDATE = 
+            "insert into LesniHospodarskaEvidence(id, id_psk, id_podvykon, id_druhtezby, id_drevina, plocha, mnozstvi, datum, poznamka)" +
+            " values (:id, :id_psk, :id_podvykon, :id_druhtezby, :id_drevina, :plocha, :mnozstvi, :datum, :poznamka)";
+        private const string UPDATE =
             "update LesniHospodarskaEvidence" +
             " set id_psk = :id_psk," +
             " id_podvykon = :id_podvykon," +
             " id_druhtezby = :id_druhtezby," +
             " id_drevina = :id_drevina," +
             " plocha = :plocha," +
-            " mnozstvi = :mnozstvi" +
+            " mnozstvi = :mnozstvi," +
+            " datum = :datum," +
+            " poznamka = :poznamka" +
             " where id = :id";
         private const string DELETE = "delete from LesniHospodarskaEvidence where id = :id";
 
@@ -72,6 +74,8 @@ namespace Backend.TableDataGateways.Oracle
                         cmd.Parameters.Add(":id_drevina", ins.IdDrevina);
                         cmd.Parameters.Add(":plocha", ins.Plocha);
                         cmd.Parameters.Add(":mnozstvi", ins.Mnozstvi);
+                        cmd.Parameters.Add(":datum", ins.Datum);
+                        cmd.Parameters.Add(":poznamka", ins.Poznamka);
                         cmd.ExecuteNonQuery();
                         return true;
                     }
@@ -101,6 +105,8 @@ namespace Backend.TableDataGateways.Oracle
                         cmd.Parameters.Add(":id_drevina", ins.IdDrevina);
                         cmd.Parameters.Add(":plocha", ins.Plocha);
                         cmd.Parameters.Add(":mnozstvi", ins.Mnozstvi);
+                        cmd.Parameters.Add(":datum", ins.Datum);
+                        cmd.Parameters.Add(":poznamka", ins.Poznamka);
                         cmd.Parameters.Add(":id", ins.Id);
                         cmd.ExecuteNonQuery();
                         return true;
@@ -136,7 +142,9 @@ namespace Backend.TableDataGateways.Oracle
                                 IdDruhTezby = reader.GetString(++i),
                                 IdDrevina = reader.GetString(++i),
                                 Plocha = reader.GetDouble(++i),
-                                Mnozstvi = reader.GetDouble(++i)
+                                Mnozstvi = reader.GetDouble(++i),
+                                Datum = reader.GetDateTime(++i),
+                                Poznamka = !reader.IsDBNull(++i) ? reader.GetString(i) : null
                             };
                             result.Add(lesniHospodarskaEvidence);
                         }

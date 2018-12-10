@@ -64,30 +64,31 @@
 
                 <Button Command="{Binding FilterCommand}" Content="FILTROVAT" Grid.Row="0" Grid.Column="4"></Button>
         <StackPanel Grid.Row="1" Grid.Column="0">
-                    <Label Padding="0,0,0,10"  Content="LHC:" Width="150" Foreground="#757575" FontSize="12" FontWeight="Bold"></Label>
+                    <Label Padding="0,0,0,10"  Content="LHC:" Width="150" ></Label>
         <ComboBox  ItemsSource="{Binding LhcList, Mode=TwoWay}" SelectedItem="{Binding LhcListSelected, Mode=TwoWay}" Width="150" Text="LHC">
            
         </ComboBox>
-                    <Label  Padding="0,20,0,10" Content="Oddělení:" Width="150" Foreground="#757575" FontSize="12"  FontWeight="Bold"></Label>
+                    <Label  Padding="0,20,0,10" Content="Oddělení:" Width="150" ></Label>
         <ComboBox  ItemsSource="{Binding OddList, Mode=TwoWay}" SelectedItem="{Binding OddListSelected, Mode=TwoWay}" Width="150"/>
-                    <Label Padding="0,20,0,10" Content="Dílec:" Width="150" Foreground="#757575" FontSize="12"  FontWeight="Bold"></Label>
+                    <Label Padding="0,20,0,10" Content="Dílec:" Width="150" ></Label>
         <ComboBox ItemsSource="{Binding DilList, Mode=TwoWay}" SelectedItem="{Binding DilListSelected, Mode=TwoWay}" Width="150"/>
-                    <Label Padding="0,20,0,10" Content="Porost:" Width="150" Foreground="#757575" FontSize="12"  FontWeight="Bold"></Label>
+                    <Label Padding="0,20,0,10" Content="Porost:" Width="150" ></Label>
         <ComboBox ItemsSource="{Binding PorList, Mode=TwoWay}" SelectedItem="{Binding PorListSelected, Mode=TwoWay}" Width="150"/>
-                    <Label Padding="0,20,0,10" Content="Porostní skupina:" Width="150" Foreground="#757575" FontSize="12"  FontWeight="Bold"></Label>
+                    <Label Padding="0,20,0,10" Content="Porostní skupina:" Width="150"></Label>
         <ComboBox ItemsSource="{Binding PskList, Mode=TwoWay}" SelectedItem="{Binding PskListSelected, Mode=TwoWay}" Width="150"/>
         </StackPanel>
 
                 <materialDesign:Card  Grid.Row="1" Grid.Column="1" MinWidth="600" Margin="40,0,0,0" Grid.ColumnSpan="4" VerticalAlignment="Stretch">
-                    <DataGrid ItemsSource="{Binding LheList, Mode=TwoWay}">
+                    <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding LheList, Mode=TwoWay}" SelectedItem="{Binding LheSelected, Mode=TwoWay}" SelectionMode="Single">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Měsíc"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Výkon"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Podvýkon"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Druh těžby"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Dřevina"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Plocha [m2]"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Množství [cm3] "></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Datum, StringFormat={}{0:dd/MM/yyyy}}" Header="Datum"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Vykon}" Header="Výkon"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Podvykon}" Header="Podvýkon"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding DruhTezby}"  Header="Druh těžby"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Drevina}" Header="Dřevina"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Plocha}" Header="Plocha [m2]"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Mnozstvi}" Header="Množství [cm3]"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Poznamka}" Header="Poznámka"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </materialDesign:Card>

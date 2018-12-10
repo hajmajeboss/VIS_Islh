@@ -62,6 +62,9 @@ namespace DesktopClient.ViewModels
         private List<LesniHospodarskaEvidence> _lheList;
         public List<LesniHospodarskaEvidence> LheList { get { return _lheList; } set { _lheList = value; OnPropertyChanged("LheList"); } }
 
+        private LesniHospodarskaEvidence _lheSelected;
+        public LesniHospodarskaEvidence LheSelected { get { return _lheSelected; } set { _lheSelected = value; OnPropertyChanged("LheSelected"); } }
+
         private string _numberOfEntries;
         public string NumberOfEntries { get { return _numberOfEntries; } set { _numberOfEntries = value; OnPropertyChanged("NumberOfEntries"); } }
 
@@ -93,19 +96,59 @@ namespace DesktopClient.ViewModels
 
         public void AddLheButton_ClickCommand(object param)
         {
-            var addLheView = new LesniHospodarskaEvidenceItemView();
-            addLheView.Show();
+            if (PskListSelected != null)
+            {
+                var addLheView = new LesniHospodarskaEvidenceItemView(PskListSelected);
+                addLheView.Show();
+            }
+            else
+            {
+                MessageBox.Show("Vyberte prosím porostní skupinu.", "Chyba", MessageBoxButton.OK);
+            }
         }
 
         public void EditLheButton_ClickCommand(object param)
         {
-            var editLheView = new LesniHospodarskaEvidenceItemView();
-            editLheView.Show();
+            if (PskListSelected != null) {
+                if (LheSelected != null)
+                {
+                    var editLheView = new LesniHospodarskaEvidenceItemView(PskListSelected, LheSelected);
+                    editLheView.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Vyberte prosím záznam LHE.", "Chyba", MessageBoxButton.OK);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vyberte prosím porostní skupinu.", "Chyba", MessageBoxButton.OK);
+            }
         }
 
         public void RemoveLheButton_ClickCommand(object param)
         {
-            var result = MessageBox.Show("Opravdu chcete smazat tento záznam?", "Smazat záznam", MessageBoxButton.YesNo);
+            if (PskListSelected != null)
+            {
+                if (LheSelected != null)
+                {
+                    var result = MessageBox.Show("Opravdu chcete smazat tento záznam?", "Smazat záznam", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        lheTableModule.RemoveLhe(LheSelected);
+                        LheList = lheTableModule.LoadLhe(PskListSelected);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Vyberte prosím záznam LHE.", "Chyba", MessageBoxButton.OK);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vyberte prosím porostní skupinu.", "Chyba", MessageBoxButton.OK);
+            }
+     
         }
 
         public void UpdateLheButton_ClickCommand(object param)

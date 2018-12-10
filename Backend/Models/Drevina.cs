@@ -10,5 +10,10 @@ namespace Backend.Models
         public string Kod { get; set; }
         public double? Hustota { get; set; }
         public string Poznamka { get; set; }
+
+        public override string ToString()
+        {
+            return Popis + " - " + Poznamka;
+        }
     }
 }

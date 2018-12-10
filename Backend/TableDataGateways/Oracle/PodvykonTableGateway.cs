@@ -11,6 +11,7 @@ namespace Backend.TableDataGateways.Oracle
     {
         private const string SELECT_ALL = "select id, id_vykon, kod, popis, poznamka from Podvykon";
         private const string SELECT_ONE = "select id, id_vykon, kod, popis, poznamka from Podvykon where id = :id";
+        private const string SELECT_VYKON = "select id, id_vykon, kod, popis, poznamka from Podvykon where id_vykon = :id_vykon";
         private const string INSERT = "insert into Podvykon(id, id_vykon, kod, popis, poznamka) values (:id, :id_vykon, :kod, :popis, :poznamka)";
         private const string UPDATE = "update Podvykon set id_vykon = :id_vykon, kod = :kod, popis = :popis, poznamka = :poznamka where id = :id";
         private const string DELETE = "delete from Podvykon where id = :id";
@@ -136,5 +137,40 @@ namespace Backend.TableDataGateways.Oracle
             return result.FindLast(x => x.Id.Equals(id));
         }
 
+        public List<Model> SelectByVykon(Model vykon)
+        {
+            List<Model> result = new List<Model>();
+            using (var c = ConnetionFactory.GetOracleConnection())
+            {
+                using (var cmd = c.CreateCommand())
+                {
+                    try
+                    {
+                        cmd.CommandText = SELECT_VYKON;
+                        cmd.Parameters.Add(":id_vykon", vykon.Id);
+                        OracleDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            int i = -1;
+                            Podvykon podvykon = new Podvykon
+                            {
+                                Id = reader.GetString(++i),
+                                IdVykon = reader.GetString(++i),
+                                Kod = reader.GetString(++i),
+                                Popis = !reader.IsDBNull(++i) ? reader.GetString(i) : null,
+                                Poznamka = !reader.IsDBNull(++i) ? reader.GetString(i) : null
+                            };
+                            result.Add(podvykon);
+                        }
+                        return result;
+                    }
+                    catch (OracleException oe)
+                    {
+                        Log(oe.Message);
+                        return null;
+                    }
+                }
+            }
+        }
     }
 }

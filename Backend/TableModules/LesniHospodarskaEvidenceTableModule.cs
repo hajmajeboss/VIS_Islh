@@ -21,7 +21,31 @@ namespace Backend.TableModules
             var res = db.LesniHospodarskaEvidenceTableGateway.SelectAll();
             var lhe = res.Cast<LesniHospodarskaEvidence>().ToList();
             List<LesniHospodarskaEvidence> filteredLhe = lhe.FindAll(x => x.IdPorostniSkupina.Equals(psk.Id)).ToList();
+
+            foreach(var item in filteredLhe)
+            {
+                item.GetPodvykon(db.PodvykonTableGateway);
+                item.GetDrevina(db.DrevinaTableGateway);
+                item.GetDruhTezby(db.DruhTezbyTableGateway);
+                item.GetVykon(db.VykonTableGateway);
+            }
+
             return filteredLhe;
+        }
+
+        public void AddLhe(LesniHospodarskaEvidence lhe)
+        {
+            db.LesniHospodarskaEvidenceTableGateway.Insert(lhe);
+        }
+
+        public void RemoveLhe(LesniHospodarskaEvidence lhe)
+        {
+            db.LesniHospodarskaEvidenceTableGateway.Delete(lhe);
+        }
+
+        public void UpdateLhe(LesniHospodarskaEvidence lhe)
+        {
+            db.LesniHospodarskaEvidenceTableGateway.Update(lhe);
         }
     }
 }

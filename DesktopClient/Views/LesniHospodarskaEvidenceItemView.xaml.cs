@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Backend.Models;
+using DesktopClient.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +21,11 @@ namespace DesktopClient.Views
     /// </summary>
     public partial class LesniHospodarskaEvidenceItemView : Window
     {
-        public LesniHospodarskaEvidenceItemView()
+        public LesniHospodarskaEvidenceItemView(PorostniSkupina psk, LesniHospodarskaEvidence lhe = null)
         {
+            var vm = new LesniHospodarskaEvidenceItemViewModel(((App)App.Current).StorageContext, psk, lhe);
+            DataContext = vm;
+            vm.OnRequestClose += (s, e) => this.Close();
             InitializeComponent();
         }
     }

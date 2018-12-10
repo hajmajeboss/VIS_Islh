@@ -22,5 +22,10 @@ namespace Backend.Models
             return null;
         }
 
+        public override string ToString()
+        {
+            return Kod + " - " + Popis;
+        }
+
     }
 }
