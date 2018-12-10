@@ -28,6 +28,7 @@ namespace WebApplication.Controllers
 
             var holinaTableModule = new HolinaTableModule(db);
             ViewData["Holiny"] = holinaTableModule.LoadHoliny();
+            ViewData["Desc"] = "  -  Mapa holin";
             return View();
 
         }

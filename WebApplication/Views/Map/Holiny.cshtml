@@ -1,17 +1,16 @@
-﻿
+﻿@using Backend.Models;
 @{
     ViewData["Title"] = "ISLH - Mapa holin";
 }
 
 <style>
     .map {
-        height: 60vh;
+        height: 100vh;
         width: 100%;
+        overflow: hidden;
     }
-</style>
 
-    <div style="margin: 80px; padding: 40px; width: auto; height:auto;" class=" mdl-card mdl-shadow--2dp" >
-    <h3 style="margin-bottom: 10px;" > Mapa holin</h3 >
+</style>
 
     <div id="map" class="map"> </div >
 
@@ -22,25 +21,70 @@
     var i, ii;
     for (i = 0, ii = styles.length; i < ii; ++i) {
         layers .push(new ol.layer.Tile({
-                visible: true,
+            visible: true,
+            zIndex: 100,
                 preload: Infinity,
                 source: new ol.source.BingMaps({
                     key: 'AoDBVH_fPVVh24GvTWCubBoJs0N_zJE9QM6lHQUik3D2FKONCm8eewGfazU371Yx ',
                     imagerySet: styles[i]
                 })
             }));
-    }
+        }
+        var vectorSource = new ol.source.Vector({ features: []});
+
+        layers.push(new ol.layer.Vector({
+            source: vectorSource,
+            style: new ol.style.Style({
+                fill: new ol.style.Fill({
+                    color: 'rgba(255, 0, 0, 0.4)'
+                }),
+                stroke: new ol.style.Stroke({
+                    color: '#FF0000',
+                    width: 2
+                }),
+                image: new ol.style.Circle({
+                    radius: 7,
+                    fill: new ol.style.Fill({
+                        color: '#FF0000'
+                    })
+                })
+            }),
+            visible: true,
+            zIndex: 1000
+        }));
+
 
     var map = new ol.Map({
             layers: layers,
-            height: '50%',
             loadTilesWhileInteracting: true,
             target: 'map',
             view: new ol.View({
                 center: ol.proj.fromLonLat([18.17111,49.825001]),
-                zoom: 13
+                zoom: 12
             })
         });
 
+
+        function addHolina(coords, radius)
+        {
+            var coordsArr = coords.split(' ');
+            var lon = parseFloat(coordsArr[0]);
+            var lat = parseFloat(coordsArr[1]);
+            var units = map.getView().getProjection();
+            var thing = new ol.geom.Circle(ol.proj.fromLonLat([lon, lat]), Math.sqrt(radius / 3.14));
+            var featurething = new ol.Feature({
+                name: "Holina"+coords,
+                geometry: thing
+            });
+
+            vectorSource.addFeature(featurething);
+
+            console.log(vectorSource.getFeatures());
+            console.log(map.getView().getCenter());
+         }
     </script >
-    </div >
+
+        @foreach (Holina holina in (List<Holina>)ViewData["Holiny"]) 
+        {
+            <script>addHolina("@holina.Souradnice", @holina.Plocha);</script>
+        }
