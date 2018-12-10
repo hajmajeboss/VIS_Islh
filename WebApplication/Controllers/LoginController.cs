@@ -14,14 +14,17 @@ namespace WebApplication.Controllers
     {
 
         private IStorageContext db;
+        private AuthService auth;
 
-        public LoginController(IStorageContext db)
+        public LoginController(IStorageContext db, AuthService auth)
         {
             this.db = db;
+            this.auth = auth;
         }
 
         public IActionResult Index()
         {
+            auth.User = null;
             return View(new LoginForm());
         }
 
@@ -35,6 +38,7 @@ namespace WebApplication.Controllers
                 Uzivatel signedUser = uzivatelTableModule.TrySignIn(uzivatel);
                 if (signedUser != null)
                 {
+                    auth.User = signedUser;
                     return RedirectToAction("Index", "MainMenu");
                 }
                 else

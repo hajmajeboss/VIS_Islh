@@ -24,6 +24,7 @@ namespace WebApplication
         {
             services.AddMvc();
             services.AddSingleton<IStorageContext, OracleDatabaseContext>();
+            services.AddSingleton<AuthService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
