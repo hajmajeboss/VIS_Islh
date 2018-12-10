@@ -1,7 +1,22 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ISLH - Grafy";
 }
 
-<h2>Index</h2>
+
+<div style="margin: 80px; padding: 40px; width: auto; height:auto;" class=" mdl-card mdl-shadow--2dp">
+    <h3 style="margin-bottom: 10px;">Grafy</h3>
+    <p>Pokračujte výběrem grafu.</p>
+    <br />
+    <div style="display: flex; flex-direction: row">
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" href="@Url.Action("Holiny", "Graph")" style="padding: 0; width: 200px; height: 200px; line-height: 200px;">
+            Nové holiny
+        </a>
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" href="@Url.Action("Zalesneni", "Graph")" style="margin-left: 20px; padding: 0; width: 200px; height: 200px; line-height: 200px;">
+            Nové zalesnění
+        </a>
+    </div>
+</div>
+
+
 

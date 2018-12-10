@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+
+
+<div style="padding: 40px; width: 600px; height:680px;  margin: 120px auto;" class=" mdl-card mdl-shadow--2dp">
+    <canvas id="myChart" style="margin: auto auto;"></canvas>
+</div>
+
+
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [2014, 2015,2016, 2017, 2018],
+        datasets: [{
+            label: 'Počet nově zalesněných ploch',
+            data: [1,12, 10, 5, 14],
+            backgroundColor: 'rgba(51, 153, 102, 0.75)',
+            borderColor: 'rgba(51,153,102,1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
