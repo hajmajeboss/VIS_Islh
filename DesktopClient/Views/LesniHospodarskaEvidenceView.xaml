@@ -33,7 +33,7 @@
                 <MenuItem Header="Ukončit" Command="{Binding CloseCommand}"/>
             </MenuItem>
             <MenuItem Header="Nápověda">
-                <MenuItem Header="O aplikaci">
+                    <MenuItem Header="O aplikaci" IsEnabled="False">
                 </MenuItem>
             </MenuItem>
         </Menu>

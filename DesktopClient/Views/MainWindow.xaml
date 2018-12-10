@@ -30,7 +30,7 @@
                     <MenuItem Header="Ukončit" Command="{Binding CloseCommand}"/>
                 </MenuItem>
                 <MenuItem Header="Nápověda">
-                    <MenuItem Header="O aplikaci">
+                    <MenuItem Header="O aplikaci" IsEnabled="False">
                     </MenuItem>
                 </MenuItem>
             </Menu>
@@ -49,9 +49,9 @@
 
                 <StackPanel Orientation="Horizontal" Grid.Row="3">
                     <Button Content="LHE" Command="{Binding OpenLheCommand}" FontWeight="Bold"  Padding="20" Margin="0,10,20,10" Height="200" Width="200"/>
-                    <Button Content="ZALESNĚNÍ" Background="#65BC69" FontWeight="Bold" Padding="20" Margin="0,10,20,10"   Height="200" Width="200"/>
-                    <Button Content="HOLINY" Background="#82C885" FontWeight="Bold" Padding="20" Margin="0,10,20,10" Height="200" Width="200"/>
-                    <Button Content="ODVOZY" Background="#9FD5A3" FontWeight="Bold" Padding="20" Margin="0,10,20,10" Height="200" Width="200"/>
+                    <Button Content="ZALESNĚNÍ" IsEnabled="False" FontWeight="Bold" Padding="20" Margin="0,10,20,10"   Height="200" Width="200"/>
+                    <Button Content="HOLINY"  IsEnabled="False" FontWeight="Bold" Padding="20" Margin="0,10,20,10" Height="200" Width="200"/>
+                    <Button Content="ODVOZY" IsEnabled="False" FontWeight="Bold" Padding="20" Margin="0,10,20,10" Height="200" Width="200"/>
                 </StackPanel>
             </Grid>
         </materialDesign:Card>
