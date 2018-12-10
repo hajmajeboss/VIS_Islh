@@ -29,8 +29,8 @@
         <StackPanel  materialDesign:ShadowAssist.ShadowDepth="Depth5"> 
         <Menu HorizontalAlignment="Right">
             <MenuItem Header="Evidence">
-                <MenuItem Header="Aktualizovat"/>
-                <MenuItem Header="Ukončit"/>
+                <MenuItem Header="Aktualizovat" Command="{Binding UpdateLheCommand}"/>
+                <MenuItem Header="Ukončit" Command="{Binding CloseCommand}"/>
             </MenuItem>
             <MenuItem Header="Nápověda">
                 <MenuItem Header="O aplikaci">
@@ -62,7 +62,7 @@
                 </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Lesní hospodářská evidence" HorizontalAlignment="Left" FontSize="20" Padding="0" Margin="0,0,0,40" />
 
-                <Button Content="FILTROVAT" Grid.Row="0" Grid.Column="4"></Button>
+                <Button Command="{Binding FilterCommand}" Content="FILTROVAT" Grid.Row="0" Grid.Column="4"></Button>
         <StackPanel Grid.Row="1" Grid.Column="0">
                     <Label Padding="0,0,0,10"  Content="LHC:" Width="150" Foreground="#757575" FontSize="12" FontWeight="Bold"></Label>
         <ComboBox  ItemsSource="{Binding LhcList, Mode=TwoWay}" SelectedItem="{Binding LhcListSelected, Mode=TwoWay}" Width="150" Text="LHC">
@@ -79,7 +79,7 @@
         </StackPanel>
 
                 <materialDesign:Card  Grid.Row="1" Grid.Column="1" MinWidth="600" Margin="40,0,0,0" Grid.ColumnSpan="4" VerticalAlignment="Stretch">
-                    <DataGrid>
+                    <DataGrid ItemsSource="{Binding LheList, Mode=TwoWay}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Měsíc"></DataGridTextColumn>
                             <DataGridTextColumn Header="Výkon"></DataGridTextColumn>
@@ -92,9 +92,9 @@
                     </DataGrid>
                 </materialDesign:Card>
                 <Label Content="Celkem: 0 záznamů" Grid.Row="3" Grid.Column="1" Margin="40,20,0,0"></Label>
-                <Button  Grid.Row="3" Grid.Column="2" Content="PŘIDAT ZÁZNAM"   Margin="0,20,10,0"></Button>
-                <Button  Grid.Row="3" Grid.Column="3" Content="EDITOVAT"  Margin="0,20,10,0"></Button>
-                <Button  Grid.Row="3" Grid.Column="4" Content="ODEBRAT" Margin="0,20,0,0"></Button>
+                <Button Command="{Binding AddLheCommand}" Grid.Row="3" Grid.Column="2" Content="PŘIDAT ZÁZNAM"   Margin="0,20,10,0"></Button>
+                <Button Command="{Binding EditLheCommand}" Grid.Row="3" Grid.Column="3" Content="EDITOVAT"  Margin="0,20,10,0"></Button>
+                <Button Command="{Binding RemoveLheCommand}" Grid.Row="3" Grid.Column="4" Content="ODEBRAT" Margin="0,20,0,0"></Button>
             </Grid>
 
            

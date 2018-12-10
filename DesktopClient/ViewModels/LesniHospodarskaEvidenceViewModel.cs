@@ -1,11 +1,13 @@
 ﻿using Backend.Models;
 using Backend.TableDataGateways.StorageContexts;
 using Backend.TableModules;
+using DesktopClient.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace DesktopClient.ViewModels
@@ -34,31 +36,31 @@ namespace DesktopClient.ViewModels
         public LesniHospodarskyCelek LhcListSelected { get { return _lhcListSelected; } set { _lhcListSelected = value; OnPropertyChanged("LhcListSelected"); OddList = oddTableModule.LoadOddeleni(value); } }
 
         private List<Oddeleni> _oddList;
-        public List<Oddeleni> OddList { get { return _oddList; } set { _oddList = value; OnPropertyChanged("OddList"); } }
+        public List<Oddeleni> OddList { get { return _oddList; } set { _oddList = value; DilList = null; OnPropertyChanged("OddList"); } }
 
         private Oddeleni _oddListSelected;
         public Oddeleni OddListSelected { get { return _oddListSelected; } set { _oddListSelected = value; OnPropertyChanged("OddListSelected"); DilList = dilTableModule.LoadDilce(value); } }
 
         private List<Dilec> _dilList;
-        public List<Dilec> DilList { get { return _dilList; } set { _dilList = value; OnPropertyChanged("DilList"); } }
+        public List<Dilec> DilList { get { return _dilList; } set { _dilList = value; PorList = null; OnPropertyChanged("DilList"); } }
 
         private Dilec _dilListSelected;
         public Dilec DilListSelected { get { return _dilListSelected; } set { _dilListSelected = value; OnPropertyChanged("DilListSelected"); PorList = porTableModule.LoadPorosty(value); } }
 
         private List<Porost> _porList;
-        public List<Porost> PorList { get { return _porList; } set { _porList = value; OnPropertyChanged("PorList"); } }
+        public List<Porost> PorList { get { return _porList; } set { _porList = value; PskList = null; OnPropertyChanged("PorList"); } }
 
         private Porost _porListSelected;
         public Porost PorListSelected { get { return _porListSelected; } set { _porListSelected = value; OnPropertyChanged("PorListSelected"); PskList = pskTableModule.LoadPorostniSkupiny(value); } }
 
         private List<PorostniSkupina> _pskList;
-        public List<PorostniSkupina> PskList { get { return _pskList; } set { _pskList = value; OnPropertyChanged("PskList"); } }
+        public List<PorostniSkupina> PskList { get { return _pskList; } set { _pskList = value; LheList = null; OnPropertyChanged("PskList"); } }
 
         private PorostniSkupina _pskListSelected;
         public PorostniSkupina PskListSelected { get { return _pskListSelected; } set { _pskListSelected = value; OnPropertyChanged("PskListSelected"); LheList = lheTableModule.LoadLhe(value); } }
 
         private List<LesniHospodarskaEvidence> _lheList;
-        public List<LesniHospodarskaEvidence> LheList { get { return _lheList; } set { _lheList = value; OnPropertyChanged("LheList"); }  }
+        public List<LesniHospodarskaEvidence> LheList { get { return _lheList; } set { _lheList = value; OnPropertyChanged("LheList"); } }
 
         private string _numberOfEntries;
         public string NumberOfEntries { get { return _numberOfEntries; } set { _numberOfEntries = value; OnPropertyChanged("NumberOfEntries"); } }
@@ -73,7 +75,48 @@ namespace DesktopClient.ViewModels
             porTableModule = new PorostTableModule(db);
             pskTableModule = new PorostniSkupinaTableModule(db);
 
+            FilterCommand = new RelayCommand(FilterButton_ClickCommand);
+            AddLheCommand = new RelayCommand(AddLheButton_ClickCommand);
+            EditLheCommand = new RelayCommand(EditLheButton_ClickCommand);
+            RemoveLheCommand = new RelayCommand(RemoveLheButton_ClickCommand);
+            UpdateLheCommand = new RelayCommand(UpdateLheButton_ClickCommand);
+            CloseCommand = new RelayCommand(CloseButton_ClickCommand);
+
             LhcList = lhcTableModule.LoadLhc(uzivatel);
         }
+
+        public void FilterButton_ClickCommand(object param)
+        {
+            var filterView = new LesniHospodarskaEvidenceFilterView();
+            filterView.Show();
+        }
+
+        public void AddLheButton_ClickCommand(object param)
+        {
+            var addLheView = new LesniHospodarskaEvidenceItemView();
+            addLheView.Show();
+        }
+
+        public void EditLheButton_ClickCommand(object param)
+        {
+            var editLheView = new LesniHospodarskaEvidenceItemView();
+            editLheView.Show();
+        }
+
+        public void RemoveLheButton_ClickCommand(object param)
+        {
+            var result = MessageBox.Show("Opravdu chcete smazat tento záznam?", "Smazat záznam", MessageBoxButton.YesNo);
+        }
+
+        public void UpdateLheButton_ClickCommand(object param)
+        {
+            LheList = lheTableModule.LoadLhe(PskListSelected);
+        }
+
+        public void CloseButton_ClickCommand(object param)
+        {
+            Close();
+        }
     }
+
 }
