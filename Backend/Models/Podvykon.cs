@@ -19,7 +19,7 @@ namespace Backend.Models
         public Vykon GetVykon(IVykonTableGateway gw)
         {
             Vykon vykon = (Vykon)gw.SelectOne(IdVykon);
-            return null;
+            return vykon;
         }
 
         public override string ToString()

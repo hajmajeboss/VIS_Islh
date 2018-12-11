@@ -32,6 +32,8 @@ namespace DesktopClient.ViewModels
         {
             this.db = db;
             LoginClickedCommand = new RelayCommand(Login_ClickedCommand);
+
+            LoginObserver.Instance.Listeners.Add(this);
         }
 
         public void Login_ClickedCommand(object param)
@@ -39,7 +41,6 @@ namespace DesktopClient.ViewModels
             Uzivatel u = new Uzivatel();
             u.Username = Username;
             u.Password = Password;
-
 
             var uzivatelModule = new UzivatelTableModule(db);
             Uzivatel sgn = uzivatelModule.TrySignIn(u);
@@ -58,6 +59,11 @@ namespace DesktopClient.ViewModels
             {
                 MessageBox.Show("Přihlášení selhalo. Zkontrolujte prosím své přihlašovací údaje.");
             }
+        }
+
+        public void OnPasswordChanged(string password)
+        {
+            Password = password;
         }
     }
 }

@@ -107,6 +107,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LheObserver.cs" />
+    <Compile Include="LoginObserver.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\LesniHospodarskaEvidenceFilterViewModel.cs" />

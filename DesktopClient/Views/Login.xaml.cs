@@ -31,6 +31,9 @@ namespace DesktopClient
             InitializeComponent();
         }
 
-
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            LoginObserver.Instance.NotifyPasswordChanged(passwordBox.Password);
+        }
     }
 }
