@@ -159,8 +159,11 @@ namespace DesktopClient.ViewModels
 
         public void UpdateLheButton_ClickCommand(object param)
         {
-            LheList = lheTableModule.LoadLhe(PskListSelected);
-            GetNumberOfEntries();
+            if (PskListSelected != null)
+            {
+                LheList = lheTableModule.LoadLhe(PskListSelected);
+                GetNumberOfEntries();
+            }
         }
 
         public void CloseButton_ClickCommand(object param)
@@ -187,6 +190,7 @@ namespace DesktopClient.ViewModels
             if (PskListSelected != null)
             {
                 LheList = lheTableModule.LoadLhe(PskListSelected);
+                GetNumberOfEntries();
             }
         }
     }
