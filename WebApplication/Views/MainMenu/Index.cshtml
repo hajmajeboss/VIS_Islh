@@ -9,10 +9,13 @@
     <p>@ViewData["UserInfo"]</p>
     <br />
     <div style="display: flex; flex-direction: row">
-        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" href = "@Url.Action("Holiny", "Map")" style="padding: 0; width: 200px; height: 200px; line-height: 200px;">
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" href="@Url.Action("Index", "Lhe")" style="padding: 0; width: 200px; height: 200px; line-height: 200px;">
+            Správa LHE
+        </a>
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" href="@Url.Action("Holiny", "Map")" style="margin-left: 20px; padding: 0; width: 200px; height: 200px; line-height: 200px;">
             Mapa holin
         </a>
-        <button disabled class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"  style="width: 200px; height: 200px; margin-left: 20px;">
+        <button disabled class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="width: 200px; height: 200px; margin-left: 20px;">
             Mapa zalesnění
         </button>
         <button disabled class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="width: 200px; height: 200px;  margin-left: 20px;">

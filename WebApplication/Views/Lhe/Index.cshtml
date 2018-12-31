@@ -1,0 +1,44 @@
+﻿@using Backend.Models
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div style="margin: 80px auto; padding: 40px; width: 700px; height:auto;" class=" mdl-card mdl-shadow--2dp">
+    <h3 style="margin-bottom: 30px;">Lesní hospodářská evidence</h3>
+
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Datum</th>
+                <th>Plocha [m2]</th>
+                <th>Množství [m3]</th>
+                <th>Poznámka</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var lhe in (List<LesniHospodarskaEvidence>)(ViewData["lhes"]))
+            {
+
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">@lhe.Datum.ToShortDateString()</td>
+                    <td>@lhe.Plocha</td>
+                    <td>@lhe.Mnozstvi</td>
+                    <td class="mdl-data-table__cell--non-numeric">@lhe.Poznamka</td>
+                    <td><a href=""><i class="fas fa-edit"></i></a></td>
+                    <td><a href=""><i class="fas fa-trash-alt"></i></a></td>
+                </tr>
+            }
+
+        </tbody>
+        </table>
+
+    <div style="margin-top: 20px;">
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" href="@Url.Action("AddEdit")" style="width: 120px; margin: 0 auto;">
+            Přidat záznam
+        </a>
+    </div>
+
+</div>
