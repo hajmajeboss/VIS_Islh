@@ -1,0 +1,39 @@
+﻿@model LheForm
+@{
+    ViewData["Title"] = "AddEdit";
+}
+
+<h2>Editovat záznam LHE</h2>
+
+@using (var form = Html.BeginForm())
+{
+    @Html.HiddenFor(x => x.Id);
+
+    @Html.LabelFor(x => x.Datum);
+    <br />
+    @Html.TextBoxFor(x => x.Datum);
+    <br />
+    @Html.ValidationMessageFor(x => x.Datum);
+    <br />
+    @Html.LabelFor(x => x.Plocha);
+    <br />
+    @Html.TextBoxFor(x => x.Plocha);
+    <br />
+    @Html.ValidationMessageFor(x => x.Plocha);
+    <br />
+    @Html.LabelFor(x => x.Mnozstvi);
+    <br />
+    @Html.TextBoxFor(x => x.Mnozstvi);
+    <br />
+    @Html.ValidationMessageFor(x => x.Mnozstvi);
+    <br />
+    @Html.LabelFor(x => x.Poznamka);
+    <br />
+    @Html.TextBoxFor(x => x.Poznamka);
+    <br />
+    @Html.ValidationMessageFor(x => x.Poznamka);
+    <br />
+
+    <button type="submit">Uložit změny</button>
+}
+

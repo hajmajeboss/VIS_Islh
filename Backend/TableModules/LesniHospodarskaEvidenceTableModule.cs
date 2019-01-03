@@ -66,6 +66,11 @@ namespace Backend.TableModules
             db.LesniHospodarskaEvidenceTableGateway.Delete(lhe);
         }
 
+        public LesniHospodarskaEvidence LoadOne(string id)
+        {
+            return (LesniHospodarskaEvidence)db.LesniHospodarskaEvidenceTableGateway.SelectOne(id);
+        }
+
         public void UpdateLhe(LesniHospodarskaEvidence lhe)
         {
             db.LesniHospodarskaEvidenceTableGateway.Update(lhe);

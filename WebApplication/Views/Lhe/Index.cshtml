@@ -27,8 +27,8 @@
                     <td>@lhe.Plocha</td>
                     <td>@lhe.Mnozstvi</td>
                     <td class="mdl-data-table__cell--non-numeric">@lhe.Poznamka</td>
-                    <td><a href=""><i class="fas fa-edit"></i></a></td>
-                    <td><a href=""><i class="fas fa-trash-alt"></i></a></td>
+                    <td><a href="@Url.Action("Edit", new {id = lhe.Id})"><i class="fas fa-edit"></i></a></td>
+                    <td><a href="@Url.Action("Remove", new {id = lhe.Id})"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
             }
 
@@ -36,7 +36,7 @@
         </table>
 
     <div style="margin-top: 20px;">
-        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" href="@Url.Action("AddEdit")" style="width: 120px; margin: 0 auto;">
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" href="@Url.Action("Add")" style="width: 120px; margin: 0 auto;">
             Přidat záznam
         </a>
     </div>

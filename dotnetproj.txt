@@ -1,0 +1,23 @@
+webpage:
+- login page
+- data table page
+- add/edit form
+- asi globalizace
+
+winservice:
+- stáhnou data o poèasí
+- vizualizovat z toho graf
+- zaslat mailem
+- threading, lambdas
+
+winapp:
+- události
+- vlastní výjimky
+- stáhnout data o kryptomìnách
+- uložit xml
+- zparsovat xml
+- zobrazit data v tabulce
+- vlastní výjimky logovat pøes debug a trace
+
+
+
