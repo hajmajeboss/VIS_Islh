@@ -33,7 +33,7 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                Uzivatel uzivatel = new Uzivatel { Username = form.Username, Password = form.Password };
+                Uzivatel uzivatel = new Uzivatel { Username = form.Username, Password = Hash.GenerateSha1(form.Password) };
                 UzivatelTableModule uzivatelTableModule = new UzivatelTableModule(db);
                 Uzivatel signedUser = uzivatelTableModule.TrySignIn(uzivatel);
                 if (signedUser != null)
@@ -43,7 +43,7 @@ namespace WebApplication.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("ERR", "Přihlášení se nezdařilo.");
+                    ModelState.AddModelError("Password", "Přihlášení se nezdařilo.");
                 }
             }
 
